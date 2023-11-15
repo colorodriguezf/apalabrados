@@ -1,0 +1,107 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+#game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.letter-box {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tecla {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    margin: 5px;
+    cursor: pointer;
+}
+.input-matrix {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+.input-box {
+    width: 62.5px;
+    max-width: 62.5px;
+    height: 62.5px;
+    max-height: 62.5px;
+    border: 2px solid rgb(224, 224, 224);
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+    margin: 5px;
+}
+#texto {
+    margin-top: 20px;
+}
+#check-btn {
+    margin-top: 10px;
+    cursor: pointer;
+}
+.input-row input {
+    text-align: center;
+}
+
+.input-box:focus {
+    outline: none;
+}
+
+
+/* TECLADO QWERTY */
+
+
+@media only screen and (max-width: 500px) {
+
+}
+#teclado {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#teclado div button {
+    padding:18px;
+    width: auto;
+    color: inherit;
+    font-weight: bold;
+    font-size: 14px;
+    height: 60px;
+    text-align: center;
+    cursor:pointer;
+    border-radius: 3px;
+    border:none;
+    background-color:#e5ecf4;
+    box-sizing: border-box;
+    margin:10px 2px 0px 2px;
+}
+#teclado div button:active {
+    background-color:#6b9be4;
+}
+
+/* ---------------------------------- */
+
+
