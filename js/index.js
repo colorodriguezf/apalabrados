@@ -56,7 +56,7 @@
     //Obtengo la letra clickeada y la agrego al input seleccionado
     $(".btn-teclado").on("click", function () {
         valorTecla = $(this).text();
-        console.log(inputIntentoClickeado);
+        // console.log(inputIntentoClickeado);
 
         if (inputIntentoClickeado) {
             inputIntentoClickeado.val(valorTecla);
@@ -105,47 +105,111 @@
     enviarBtn.click(enviarRespuesta);
 
     function enviarRespuesta() {
-        let valoresFila = [];
+        let letras = {};    
+        // Crear objeto letras con posiciones, cantidad, utilizados y disponibilidad
+        for (let i = 0; i < palabraSecreta.length; i++) {
+            let letra = palabraSecreta[i];
     
-        if (inputIntentoClickeado) {
-            let contenedor = $(".intento" + intentoActual);
-            contenedor.find('.input-box').each(function (index) {
-                valoresFila.push($(this).val());
-            });
-    
-            let valoresFilaClon = valoresFila.slice();
-    
-            for (let i = 0; i < valoresFilaClon.length; i++) {
-                let letraIngresada = valoresFilaClon[i];
-    
-                // Verificar si la letra ingresada existe en alguna posición de la palabra secreta
-                if (palabraSecreta.includes(letraIngresada)) {
-                    // Obtener todas las posiciones en las que aparece la letra
-                    let posiciones = [];
-                    for (let j = 0; j < palabraSecreta.length; j++) {
-                        if (palabraSecreta.charAt(j) === letraIngresada) {
-                            posiciones.push(j);
-                        }
+            if (!letras[letra]) {
+                letras[letra] = { posiciones: [i], cantidad: 1, utilizados: 0, disponible: true };
+            } else {
+                letras[letra].posiciones.push(i);
+                letras[letra].cantidad++;
+            }
+        }
+        console.log("LETRAS 1:"+letras);
+        // Copiar el objeto letras antes de las iteraciones
+        let letrasOriginal = JSON.parse(JSON.stringify(letras));
+
+
+        
+    if (inputIntentoClickeado) {
+        let contenedor = $(".intento" + intentoActual);    
+       
+        // Iteración 1: busca solo las letras que coinciden en la posicion, y las marca verde
+        contenedor.find('.input-box').each(function (index) {
+        
+        let letraIngresada = $(this).val();
+        let letraSecreta = palabraSecreta.charAt(index);       
+        if (letraIngresada === letraSecreta) {
+            if (!$(this).hasClass('verde')) {
+                $(this).css('background', 'green').addClass('verde');
+                
+                //pongo el color del teclado en verde
+                let letraBoton = letraIngresada.toLowerCase();
+                $('#teclado .btn-teclado.' + letraBoton).css('background', 'green').addClass('verde');
+                
+                
+                let letraEnLetras = letras[letraIngresada];
+                if (letraEnLetras && letraEnLetras.disponible) {
+                    letraEnLetras.utilizados++; 
+                    //si esta disponible, le sumo 1 a utilizada (sino por mas que la letra exista se marca como gris en la 3ra iteracion, 
+                    //pq puede que en otra posicion este la letra, y la tome como valida, 
+                    //pero despues puede venir una correcta y no se marcaria pq ya marco una anterior. Entonces 1 iteracion solo marca las verdes)
+                    if (letraEnLetras.utilizados >= letraEnLetras.cantidad) {
+                        letraEnLetras.disponible = false; 
+                        //si ya estan utilizadas las disponibles, se pone como false para que en otras iteraciones si encuentra la letra, se pone como gris.
                     }
-    
-                    // Verificar la posición correcta
-                    if (posiciones.length > 0) {
-                        let posicionCorrecta = posiciones.indexOf(i);
-                        if (posicionCorrecta !== -1) {
-                            console.log(letraIngresada + " en posición correcta en la palabra");
-                            $(".intento" + intentoActual + " .input-box.pos" + i).css('background', 'green');
-                        } else {
-                            console.log(letraIngresada + " en posición incorrecta en la palabra");
-                            $(".intento" + intentoActual + " .input-box.pos" + i).css('background', 'yellow');
-                        }
-                    }
-                } else {
-                    console.log(letraIngresada + " no existe en la palabra");
-                    $(".intento" + intentoActual + " .input-box.pos" + i).css('background', 'gray');
                 }
             }
+        }
+    });
+
     
-            let palabraIngresada = valoresFila.join('');
+            // Iteración 2: busca letras que existan pero no coincida la posicion, y las marca de amarillo. (siempre que esten disponibles, sino gris)
+            contenedor.find('.input-box').each(function (index) {
+                let letraIngresada = $(this).val();
+                let letraEnLetras = letras[letraIngresada];
+                //si existe && no coincide la posicion && esta disponible && y no fue marcada como posicion correcta en verde (sino marcaria la correcta como amarillo)
+                if (letraEnLetras && !letraEnLetras.posiciones.includes(index) && letraEnLetras.disponible && !$(this).hasClass('verde')) {
+                    if (!$(this).hasClass('amarillo')) {
+                        $(this).css('background', 'yellow').addClass('amarillo');
+                        
+                            let letraBoton = letraIngresada.toLowerCase();
+                            //pongo el color del teclado en amarillo si no tiene la clase verde
+                            //puede tener verde, y amarillo en la matriz (en el teclado solo hay 1 letra, se prioriza la verde)
+                            if(!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde')) {
+                                $('#teclado .btn-teclado.' + letraBoton).css('background', 'yellow').addClass('amarillo');
+                            }
+
+                            //si quedo alguna disponible no marcada como verde, y la voy a utilzar, sumo 1 en utilzados, asi si hay otra se marca como gris
+                            if (letraEnLetras.disponible) {
+                            letraEnLetras.utilizados++;
+                            if (letraEnLetras.utilizados >= letraEnLetras.cantidad) {
+                                letraEnLetras.disponible = false;
+                            }
+                        }
+                    }
+                }
+            });
+    
+            // Iteración 3: busca letras que no existan, o que si pero no esten disponibles, marca en gris
+            contenedor.find('.input-box').each(function (index) {
+                let letraIngresada = $(this).val();
+                let letraEnLetras = letras[letraIngresada];
+            
+                if (letraEnLetras) {
+                     //si no esta disponible && no tiene clase ni verde ni amarillo
+                     //puede que no este disponible, pero que en las iteraciones anteriores se marcaron como verde/amarillo
+                     //si no preguntamos la clase, lo verde/amarillo lo marca como gris
+                    if (!letraEnLetras.disponible && !$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
+                        $(this).css('background', 'gray').addClass('gris');
+
+                        //si la letra no existe marcamos el teclado en gris
+                        let letraBoton = letraIngresada.toLowerCase();
+                        $('#teclado .btn-teclado.' + letraBoton).css('background', 'grey').addClass('gris');
+                        
+                    }
+                } else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
+                    $(this).css('background', 'gray').addClass('gris marcado');
+
+                    //si la letra no existe marcamos el teclado en gris
+                    let letraBoton = letraIngresada.toLowerCase();
+                    $('#teclado .btn-teclado.' + letraBoton).css('background', 'grey').addClass('gris');
+                }
+            });
+    
+            let palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
             console.log("Palabra ingresada:", palabraIngresada);
             console.log("Palabra secreta:", palabraSecreta);
     
@@ -157,11 +221,23 @@
                 let siguienteFila = $(".intento" + intentoActual + " .input-box.pos0");
                 siguienteFila.css('border-color', 'lightblue');
                 inputIntentoClickeado = siguienteFila;
-    
                 obtenerInputClickeado();
             }
+    
+            // Una vez iterado 3 veces (3 colores), vuelvo al objeto original, asi puedo iterar
+            //por cada fila(intento) sin que cuenten los intentos anteriores (no se pisan)
+            letras = letrasOriginal;
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
