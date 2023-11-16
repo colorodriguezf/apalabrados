@@ -1,4 +1,5 @@
 
+  "use strict"
     const qwerty = "qwertyuiopasdfghjklñzxcvbnm";
     const letrasMayusculas = qwerty.toUpperCase();
     const palabras = ["LUGAR", "HOJAS", "PERRO", "PLATO", "PAPEL"];
@@ -234,23 +235,8 @@
     
     
     
+  
+
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-       
-    
-    
+  
