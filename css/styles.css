@@ -38,6 +38,13 @@ body {
       padding: 2%;
       margin: auto;
     }
+
+    .btn-group-controles {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        gap: 16px;
+    }
     .letter-box {
         width: 30px;
         height: 30px;

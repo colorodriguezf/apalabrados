@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/logoApalabrados.png">
     <title>Apalabrados</title>
 </head>
 <body>
@@ -25,6 +26,21 @@
     </div>
 
     <div class="contenedor-juego">
+                
+        <div class="btn-group-controles" role="group" aria-label="Controles">
+            <!-- Botón para reiniciar el juego -->
+            <button type="button" class="btn btn-primary  restart" title="Reiniciar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+              </svg>
+            </button>
+            <!-- Botón para cambiar las reglas del juego -->
+            <button type="button" class="btn btn-secondary" id="btnChangeRules">
+                <i class="bi bi-gear"></i> Cambiar Reglas
+            </button>
+        </div>
+
         <div class="input-matrix" id="input-matrix"></div>
 
         <div class="alert alert-danger campoIncompleto" role="alert">
@@ -35,16 +51,17 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Modal title</h5>
+                  <h5 class="modal-title"></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  
+                  <p class="palabra-era" ></p>
+                  <p class="total-conseguido"></p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary restart" data-dismiss="modal">Jugar de nuevo</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"></button>
                   <button type="button" class="btn btn-secondary volver_menu" data-dismiss="modal">Volver al menu</button>
                 </div>
               </div>
