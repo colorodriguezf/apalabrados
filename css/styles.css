@@ -1,105 +1,181 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 50px;
-}
-#game-container {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    height: 100vh;
+    margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.letter-box {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #000;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.tecla {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #000;
-    margin: 5px;
-    cursor: pointer;
-}
-.input-matrix {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 20px;
-}
-.input-box {
-    width: 62.5px;
-    max-width: 62.5px;
-    height: 62.5px;
-    max-height: 62.5px;
-    border: 2px solid rgb(224, 224, 224);
-    font-size: 1.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 5px;
-    user-select: none;
-    cursor: pointer;
-    margin: 5px;
-}
-#texto {
-    margin-top: 20px;
-}
-#check-btn {
-    margin-top: 10px;
-    cursor: pointer;
-}
-.input-row input {
-    text-align: center;
 }
 
-.input-box:focus {
-    outline: none;
-}
+/* Menu juego */
+  .container-menu {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    margin: auto;
+  }
+  .menu h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .menu h2 {
+    text-align: center;
+  }
+  .btn-dificultad {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+
+  /* Juego */
+    .contenedor-juego {
+      display: none;
+      margin-top: 10vh;
+      padding: 2%;
+      margin: auto;
+    }
+    .letter-box {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #000;
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tecla {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #000;
+        margin: 5px;
+        cursor: pointer;
+    }
+    .input-matrix {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 5vh;
+    }
+    .input-box {
+        width: 45.5px;
+        height: 50.5px;
+        border: 2px solid rgb(224, 224, 224);
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 5px;
+        user-select: none;
+        cursor: pointer;
+        margin: 4px;
+    }
+    #texto {
+        margin-top: 20px;
+    }
+    #check-btn {
+        margin-top: 10px;
+        cursor: pointer;
+    }
+    .input-row input {
+        text-align: center;
+    }
+
+    .input-box:focus {
+        outline: none;
+    }
+
+    /*Alerts  */
+    .alert {
+        text-align: center;
+    }
+    .campoIncompleto {
+        display: none;
+    }
+
+    /* Modal */
+    .modal {
+    position: fixed;
+    top: 20vh;
+    }
 
 
 /* TECLADO QWERTY */
-
-
-@media only screen and (max-width: 500px) {
-
-}
 #teclado {
     display: flex;
     flex-direction: column;
     width:100%;
     overflow: hidden;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
 }
 
 #teclado div button {
-    padding:18px;
+    padding:10px;
     width: auto;
     color: inherit;
     font-weight: bold;
-    font-size: 14px;
-    height: 60px;
+    font-size: 10px;
+    height: 50px;
     text-align: center;
     cursor:pointer;
     border-radius: 3px;
     border:none;
     background-color:#e5ecf4;
     box-sizing: border-box;
-    margin:10px 2px 0px 2px;
+    margin:5px 2px 0px 2px;
 }
 #teclado div button:active {
     background-color:#6b9be4;
+}
+.btn-teclado {
+    text-transform: uppercase;
+}
+
+@media only screen and (min-width: 650px) {
+
+    #teclado {
+        margin-top: 20px;
+    }
+    
+    #teclado div button {
+        padding:18px;
+        font-size: 14px;
+        height: 60px;
+        text-align: center;
+        margin:10px 2px 0px 2px;
+    }
+
+    .input-matrix {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .input-box {
+        width: 62.5px;
+        max-width: 62.5px;
+        height: 62.5px;
+        max-height: 62.5px;
+        border: 2px solid rgb(224, 224, 224);
+        font-size: 1.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 5px;
+        user-select: none;
+        cursor: pointer;
+        margin: 5px;
+    }
 }
 
 /* ---------------------------------- */

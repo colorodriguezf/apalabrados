@@ -1,23 +1,43 @@
 
-  "use strict"
-    const qwerty = "qwertyuiopasdfghjklñzxcvbnm";
-    const letrasMayusculas = qwerty.toUpperCase();
-    const palabras = ["LUGAR", "HOJAS", "PERRO", "PLATO", "PAPEL"];
+  "use strict";
+//   import "palabrasRandom";
+    let cantidadLetras = 0;
+    let palabras = ""; //arreglo de palabras
+    let palabraSecreta = "";
 
-    let palabraSecreta = generarPalabra();
+    function iniciarJuego(ndificultad) {
+        cantidadLetras = ndificultad;
+        $('.container').css('display', 'none'); //saco menu
+        $('.contenedor-juego').css('display', 'block');//muestro juego
+        generarInterfazJuego();
+        if(ndificultad == 4) {
+         palabras = palabras4Letras;
+        } else if( ndificultad == 5) {
+            palabras = palabras5Letras;
+        } else if( ndificultad == 6) {
+            palabras = palabras6Letras;
+        } else if( ndificultad == 5) {
+            palabras = palabras7Letras;
+        }
+       
+        palabraSecreta = generarPalabra(palabras);
+        // palabraSecreta.toUpperCase();
+    }
+
+    const qwerty = "qwertyuiopasdfghjklñzxcvbnm";
     let intentoActual = 1; //input-row
+    let maximo_intento = 6;
     let posicionActual = 0; //pos de los input dentro de input-row
     let inputIntentoClickeado = null;
 
-    generarInterfazJuego();
-    console.log(palabraSecreta);
 
-    function generarPalabra() {
+    function generarPalabra(palabras) {
         return palabras[Math.floor(Math.random() * palabras.length)];
     }
 
     function generarInterfazJuego() {
-        const inputMatrix = $("#input-matrix");
+        let inputMatrix = $("#input-matrix");
+        inputMatrix.empty();
         generarInputMatriz(inputMatrix);
         $(document).off("click", ".input-box");    
     }
@@ -25,12 +45,12 @@
     //Matriz de inputs
     function generarInputMatriz(container) {
         for (let i = 1; i <= 6; i++) {
-            const row = $("<div></div>");
+            let row = $("<div></div>");
             row.addClass("input-row intento" + i);
             container.append(row);
 
-            for (let j = 0; j < 5; j++) {
-                const inputBox = $("<input>");
+            for (let j = 0; j < cantidadLetras; j++) {
+                let inputBox = $("<input>");
                 inputBox.attr("type", "text");
                 inputBox.addClass("input-box pos" + j);
                 inputBox.prop("readonly", true);
@@ -48,7 +68,6 @@
     function obtenerInputClickeado() {
         $(".intento" + intentoActual + " .input-box").on("click", function () {
             inputIntentoClickeado = $(this);
-            console.log("ENTROOOOO");
             $(".intento" + intentoActual + " .input-box").css('border-color', '');
             $(this).css('border-color', 'lightblue');
         });
@@ -56,8 +75,8 @@
 
     //Obtengo la letra clickeada y la agrego al input seleccionado
     $(".btn-teclado").on("click", function () {
+        let valorTecla = "";
         valorTecla = $(this).text();
-        // console.log(inputIntentoClickeado);
 
         if (inputIntentoClickeado) {
             inputIntentoClickeado.val(valorTecla);
@@ -76,11 +95,10 @@
 
     
 
-    const eliminarBtn = $(".btnTeclado.btn-eliminar");
+    let eliminarBtn = $(".btnTeclado.btn-eliminar");
     eliminarBtn.click(eliminarLetra);
 
     function eliminarLetra() {
-        console.log(inputIntentoClickeado);
     
         if (inputIntentoClickeado) {
             let contenidoActual = inputIntentoClickeado.val();
@@ -102,12 +120,23 @@
     }
 
     
-    const enviarBtn = $(".btnTeclado.btn-enviar");
+    let enviarBtn = $(".btnTeclado.btn-enviar");
     enviarBtn.click(enviarRespuesta);
 
-    function enviarRespuesta() {
-        let letras = {};    
-        // Crear objeto letras con posiciones, cantidad, utilizados y disponibilidad
+    function enviarRespuesta() {        
+        //verifico si no hay inputs vacios
+        let inputsVacios = $('.intento' + intentoActual + ' .input-box').filter(function () {
+            return $(this).val().trim() === '';
+        });
+        
+        if (inputsVacios.length > 0) {
+            $('.campoIncompleto').css('display', 'block');
+        } else {
+            //si no hay inputs vacios sigo con la logica del juego
+            $('.campoIncompleto').css('display', 'none');
+
+            let letras = {};  
+            //objeto letras con posiciones, cantidad, utilizados y disponibilidad
         for (let i = 0; i < palabraSecreta.length; i++) {
             let letra = palabraSecreta[i];
     
@@ -118,12 +147,10 @@
                 letras[letra].cantidad++;
             }
         }
-        console.log("LETRAS 1:"+letras);
-        // Copiar el objeto letras antes de las iteraciones
+
+        //copiar el objeto letras antes de las iteraciones
         let letrasOriginal = JSON.parse(JSON.stringify(letras));
 
-
-        
     if (inputIntentoClickeado) {
         let contenedor = $(".intento" + intentoActual);    
        
@@ -211,25 +238,47 @@
             });
     
             let palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
-            console.log("Palabra ingresada:", palabraIngresada);
-            console.log("Palabra secreta:", palabraSecreta);
     
             if (palabraIngresada === palabraSecreta) {
                 alert("¡Ganaste!");
-            } else {
+                $('.modal_resultado .modal-title').text('Ganaste');
+            } else if (intentoActual < maximo_intento) {
                 intentoActual++;
-                console.log(intentoActual);
                 let siguienteFila = $(".intento" + intentoActual + " .input-box.pos0");
                 siguienteFila.css('border-color', 'lightblue');
                 inputIntentoClickeado = siguienteFila;
                 obtenerInputClickeado();
+            } else if (intentoActual == maximo_intento) {
+                console.log("PERDISTE");
+                $('.modal_resultado .modal-title').text("Perdiste!");
+                $('.modal_resultado .modal-body').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
+                $('.modal_resultado').modal('show');
             }
+            
     
             // Una vez iterado 3 veces (3 colores), vuelvo al objeto original, asi puedo iterar
             //por cada fila(intento) sin que cuenten los intentos anteriores (no se pisan)
             letras = letrasOriginal;
+            }
         }
+
     }
+
+
+    $('.modal_resultado .restart').on('click', function () {
+        $('.modal_resultado').modal('hide');
+        intentoActual = 1;
+        posicionActual = 0;
+        $('.btn-teclado').css('background', '#e5ecf4');
+        iniciarJuego(cantidadLetras);
+    });
+
+    $('.modal_resultado .volver_menu').on('click', function () {
+        $('.contenedor-juego').css('display', 'none');
+        $('.container-menu').css('display', 'block');
+    });
+
+
     
     
     

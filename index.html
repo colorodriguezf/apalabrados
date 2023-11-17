@@ -9,47 +9,91 @@
 </head>
 <body>
     
-    <div id="game-container"></div>
-    <div class="input-matrix" id="input-matrix"></div>
-
-
-    <div id="teclado">
-        <div>
-            <button class="btn-teclado q">Q</button>
-            <button class="btn-teclado w">W</button>
-            <button class="btn-teclado e">E</button>
-            <button class="btn-teclado r">R</button>
-            <button class="btn-teclado t">T</button>
-            <button class="btn-teclado y">Y</button>
-            <button class="btn-teclado u">U</button>
-            <button class="btn-teclado i">I</button>
-            <button class="btn-teclado o">O</button>
-            <button class="btn-teclado p">P</button>
-        </div>
-        <div>
-            <button class="btn-teclado a">A</button>
-            <button class="btn-teclado s">S</button>
-            <button class="btn-teclado d">D</button>
-            <button class="btn-teclado f">F</button>
-            <button class="btn-teclado g">G</button>
-            <button class="btn-teclado h">H</button>
-            <button class="btn-teclado j">J</button>
-            <button class="btn-teclado k">K</button>
-            <button class="btn-teclado l">L</button>
-            <button class="btn-teclado ñ">Ñ</button>
-        </div>
-        <div>
-            <button class="btnTeclado btn-enviar">ENVIAR</button>
-            <button class="btn-teclado z">Z</button>
-            <button class="btn-teclado x">X</button>
-            <button class="btn-teclado c">C</button>
-            <button class="btn-teclado v">V</button>
-            <button class="btn-teclado b">B</button>
-            <button class="btn-teclado n">N</button>
-            <button class="btn-teclado m">M</button>
-            <button class="btnTeclado btn-eliminar">ELIMINAR</button>
+    <div class="container container-menu">
+        <div class="menu">
+            <h1>Apalabrados</h1>
+            <h2>Dificultad:</h2>
+            <div class="row">
+              <div class="col-md-6 offset-md-3 col-sm-12">
+                <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(4)"> 4 Letras</button>
+                <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(5)"> 5 Letras</button>
+                <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(6)"> 6 Letras</button>
+                <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(7)"> 7 Letras</button>
+              </div>
+            </div>
         </div>
     </div>
+
+    <div class="contenedor-juego">
+        <div class="input-matrix" id="input-matrix"></div>
+
+        <div class="alert alert-danger campoIncompleto" role="alert">
+            Completa todos los campos
+        </div>
+
+        <div class="modal modal_resultado" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary restart" data-dismiss="modal">Jugar de nuevo</button>
+                  <button type="button" class="btn btn-secondary volver_menu" data-dismiss="modal">Volver al menu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <div id="teclado">
+            <div>
+                <button class="btn-teclado q">q</button>
+                <button class="btn-teclado w">w</button>
+                <button class="btn-teclado e">e</button>
+                <button class="btn-teclado r">r</button>
+                <button class="btn-teclado t">t</button>
+                <button class="btn-teclado y">y</button>
+                <button class="btn-teclado u">u</button>
+                <button class="btn-teclado i">i</button>
+                <button class="btn-teclado o">o</button>
+                <button class="btn-teclado p">p</button>
+            </div>
+            <div>
+                <button class="btn-teclado a">a</button>
+                <button class="btn-teclado s">s</button>
+                <button class="btn-teclado d">d</button>
+                <button class="btn-teclado f">f</button>
+                <button class="btn-teclado g">g</button>
+                <button class="btn-teclado h">h</button>
+                <button class="btn-teclado j">j</button>
+                <button class="btn-teclado k">k</button>
+                <button class="btn-teclado l">l</button>
+                <button class="btn-teclado ñ">ñ</button>
+            </div>
+            <div>
+                <button class="btnTeclado btn-enviar">ENVIAR</button>
+                <button class="btn-teclado z">z</button>
+                <button class="btn-teclado x">x</button>
+                <button class="btn-teclado c">c</button>
+                <button class="btn-teclado v">v</button>
+                <button class="btn-teclado b">b</button>
+                <button class="btn-teclado n">n</button>
+                <button class="btn-teclado m">m</button>
+                <button class="btnTeclado btn-eliminar">ELIMINAR</button>
+            </div>
+        </div>
+    
+    </div>
+
+
+
+    
 
 
 
@@ -57,5 +101,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/palabrasRandom.js"></script>
+
 </body>
 </html>
