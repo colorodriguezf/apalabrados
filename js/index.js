@@ -6,6 +6,8 @@
     let palabraSecreta = "";
 
     function iniciarJuego(ndificultad) {
+        intentoActual = 1;
+        posicionActual = 0;
         cantidadLetras = ndificultad;
         $('.container').css('display', 'none'); //saco menu
         $('.contenedor-juego').css('display', 'block');//muestro juego
@@ -267,13 +269,12 @@
 
     $('.modal_resultado .restart').on('click', function () {
         $('.modal_resultado').modal('hide');
-        intentoActual = 1;
-        posicionActual = 0;
         $('.btn-teclado').css('background', '#e5ecf4');
         iniciarJuego(cantidadLetras);
     });
 
     $('.modal_resultado .volver_menu').on('click', function () {
+        $('.btn-teclado').css('background', '#e5ecf4');
         $('.contenedor-juego').css('display', 'none');
         $('.container-menu').css('display', 'block');
     });
