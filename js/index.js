@@ -4,6 +4,7 @@
     let cantidadLetras = 0;
     let palabras = ""; //arreglo de palabras
     let palabraSecreta = "";
+    let totalPalabrasAcertadas = 0;
 
     function iniciarJuego(ndificultad) {
         intentoActual = 1;
@@ -23,7 +24,7 @@
         }
        
         palabraSecreta = generarPalabra(palabras);
-        // palabraSecreta.toUpperCase();
+        console.log(palabraSecreta);
     }
 
     const qwerty = "qwertyuiopasdfghjklñzxcvbnm";
@@ -242,8 +243,15 @@
             let palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
     
             if (palabraIngresada === palabraSecreta) {
-                alert("¡Ganaste!");
+                totalPalabrasAcertadas++;
+                console.log(totalPalabrasAcertadas);
                 $('.modal_resultado .modal-title').text('Ganaste');
+                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
+                if (totalPalabrasAcertadas > 0) {
+                    $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
+                }
+                $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente palabra');
+                $('.modal_resultado').modal('show');
             } else if (intentoActual < maximo_intento) {
                 intentoActual++;
                 let siguienteFila = $(".intento" + intentoActual + " .input-box.pos0");
@@ -253,9 +261,15 @@
             } else if (intentoActual == maximo_intento) {
                 console.log("PERDISTE");
                 $('.modal_resultado .modal-title').text("Perdiste!");
-                $('.modal_resultado .modal-body').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
+                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
+                if (totalPalabrasAcertadas >= 0) {
+                    $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
+                    $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
+                }
                 $('.modal_resultado').modal('show');
             }
+            
+            
             
     
             // Una vez iterado 3 veces (3 colores), vuelvo al objeto original, asi puedo iterar
@@ -267,9 +281,17 @@
     }
 
 
-    $('.modal_resultado .restart').on('click', function () {
+    $(document).on('click', '.restart', function () {
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4');
+        totalPalabrasAcertadas = 0;
+        iniciarJuego(cantidadLetras);
+    });
+
+    $(document).on('click', '.siguiente', function () {
+        $('.modal_resultado').modal('hide');
+        $('.btn-teclado').css('background', '#e5ecf4');
+        console.log("ENTROO")
         iniciarJuego(cantidadLetras);
     });
 
@@ -277,6 +299,7 @@
         $('.btn-teclado').css('background', '#e5ecf4');
         $('.contenedor-juego').css('display', 'none');
         $('.container-menu').css('display', 'block');
+        totalPalabrasAcertadas = 0;
     });
 
 
