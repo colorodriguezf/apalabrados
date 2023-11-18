@@ -98,6 +98,25 @@ body {
         outline: none;
     }
 
+    /*Input verde/amarillo/gris */
+    .verde, .amarillo, .gris {
+        color:white;
+    }
+    .amarillo {
+        background-color: #f3c237!important;
+        border: 2px solid #f3c237!important;
+    }
+    .verde {
+        background-color: #79b851!important;
+        border: 2px solid #79b851!important;
+    }
+    .gris {
+        background-color: #a4aec4!important;
+        border:2px solid transparent !important;        
+    }
+
+
+
     /*Alerts  */
     .alert {
         text-align: center;
@@ -121,45 +140,57 @@ body {
     overflow: hidden;
     margin: auto;
     margin-top: 10px;
+}
+#teclado div {
     display: flex;
-    align-items: center;
     flex-wrap: nowrap;
+    gap: 5px;
 }
 
 #teclado div button {
-    padding:10px;
-    width: auto;
-    color: inherit;
-    font-weight: bold;
-    font-size: 10px;
+    padding:8px;
+    width: 35px;
+    color: #414a5e;
+    font-size: 12px;
     height: 50px;
     text-align: center;
     cursor:pointer;
-    border-radius: 3px;
+    border-radius: 4px;
     border:none;
     background-color:#e5ecf4;
     box-sizing: border-box;
-    margin:5px 2px 0px 2px;
+    margin:3px 1px 0px 1px;
+    transition: 0.2s;
 }
-#teclado div button:active {
-    background-color:#6b9be4;
+#teclado div button:hover {
+    background-color:#a4aec4;
+}
+#teclado div button:focus {
+    outline: none;
 }
 .btn-teclado {
     text-transform: uppercase;
 }
+.btnTeclado {
+    width: auto !important;
+    min-width: 40px;
+}
 
-@media only screen and (min-width: 650px) {
+@media only screen and (min-width: 720px) {
 
     #teclado {
         margin-top: 20px;
     }
     
     #teclado div button {
-        padding:18px;
-        font-size: 14px;
+        /* padding:22px; */
+        font-size: 20px;
+        min-width: 60px;
         height: 60px;
         text-align: center;
-        margin:10px 2px 0px 2px;
+        margin:5px 2px 5px 2px;
+        align-items: center; 
+        flex-wrap: nowrap;
     }
 
     .input-matrix {
@@ -182,6 +213,19 @@ body {
         user-select: none;
         cursor: pointer;
         margin: 5px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #teclado div button {
+        /* padding:22px; */
+        font-size: 20px;
+        min-width: 80px;
+        height: 60px;
+        text-align: center;
+        margin:5px 2px 5px 2px;
+        align-items: center; 
+        flex-wrap: nowrap;
     }
 }
 
