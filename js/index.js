@@ -267,19 +267,16 @@
                     $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
                 }
                 $('.modal_resultado').modal('show');
-            }
-            
-            
+            }     
             
     
             // Una vez iterado 3 veces (3 colores), vuelvo al objeto original, asi puedo iterar
-            //por cada fila(intento) sin que cuenten los intentos anteriores (no se pisan)
+            //por cada fila(intento) sin que cuenten los intentos anteriores (no se pisan).
             letras = letrasOriginal;
             }
         }
 
     }
-
 
     $(document).on('click', '.restart', function () {
         $('.modal_resultado').modal('hide');
