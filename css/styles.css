@@ -100,7 +100,8 @@ body {
 
     /*Input verde/amarillo/gris */
     .verde, .amarillo, .gris {
-        color:white;
+        color:white !important;
+        font-weight: bold;
     }
     .amarillo {
         background-color: #f3c237!important;
@@ -174,6 +175,7 @@ body {
 .btnTeclado {
     width: auto !important;
     min-width: 40px;
+    background-color:#e5ecf4 !important;
 }
 
 @media only screen and (min-width: 720px) {

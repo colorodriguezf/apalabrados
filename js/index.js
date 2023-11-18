@@ -280,20 +280,20 @@
 
     $(document).on('click', '.restart', function () {
         $('.modal_resultado').modal('hide');
-        $('.btn-teclado').css('background', '#e5ecf4');
+        $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         totalPalabrasAcertadas = 0;
         iniciarJuego(cantidadLetras);
     });
-
+    
     $(document).on('click', '.siguiente', function () {
         $('.modal_resultado').modal('hide');
-        $('.btn-teclado').css('background', '#e5ecf4');
+        $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         console.log("ENTROO")
         iniciarJuego(cantidadLetras);
     });
-
+    
     $('.modal_resultado .volver_menu').on('click', function () {
-        $('.btn-teclado').css('background', '#e5ecf4');
+        $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         $('.contenedor-juego').css('display', 'none');
         $('.container-menu').css('display', 'block');
         totalPalabrasAcertadas = 0;
