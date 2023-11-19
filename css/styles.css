@@ -5,12 +5,16 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
-    height: 100vh;
     margin: 0;
-    display: flex;
 }
 
 /* Menu juego */
+.center-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
   .container-menu {
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -34,7 +38,7 @@ body {
   /* Juego */
     .contenedor-juego {
       display: none;
-      margin-top: 10vh;
+      margin-top: 5vh !important;
       padding: 2%;
       margin: auto;
     }
@@ -134,56 +138,66 @@ body {
 
 
 /* TECLADO QWERTY */
+
 #teclado {
     display: flex;
     flex-direction: column;
-    width:100%;
+    width: 100%;
     overflow: hidden;
     margin: auto;
     margin-top: 10px;
 }
-#teclado div {
+
+#teclado > div {
     display: flex;
-    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
     gap: 3px;
 }
 
-#teclado div button {
-    padding:0px;
-    width: 30px;
-    color: #414a5e;
-    font-size: 15px;
-    height: 50px;
-    text-align: center;
-    cursor:pointer;
-    border-radius: 4px;
-    border:none;
-    background-color:#e5ecf4;
-    box-sizing: border-box;
-    margin:3px 1px 0px 1px;
-    transition: 0.2s;
-}
-#teclado div button:hover {
-    background-color:#a4aec4;
-}
-#teclado div button:focus {
-    outline: none;
-}
 .btn-teclado {
     text-transform: uppercase;
+    flex: 1;
+    max-width: 45px; /* Puedes ajustar el valor máximo según tus necesidades */
+    margin: 0 1px;
+    padding: 6px;
+    font-size: 14px;
+    background-color: #dce1ed;
+    color: #414a5e;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px transparent;
+    box-sizing: border-box;
+    transition: 0.2s;
 }
-#teclado div .btnTeclado {
-    width: auto ;
-    min-width: 40px;
-    background-color:#e5ecf4 !important;
+
+.btn-teclado:hover, .btnTeclado:hover {
+    background-color: #a4aec4;
+}
+
+.btn-teclado:focus, .btnTeclado:focus {
+    outline: none;
+}
+
+.btnTeclado {
+    flex: 2; /* Este botón ocupa más espacio */
+    width: auto;
+    min-width: 50px;
+    background-color: #dce1ed;
     font-size: 12px;
+    font-weight: 700;
     padding: 2px;
+    border-radius: 4px;
+    border: 2px transparent;
 }
 
 @media only screen and (min-width: 720px) {
 
     #teclado {
         margin-top: 20px;
+        max-width: 900px;
     }
     #teclado div {
         justify-content: center;
@@ -222,7 +236,12 @@ body {
         margin: 5px;
     }
     .btnTeclado {
-        min-width: 80px !important;
+        max-width: 100px !important;
+    }
+
+    .alert-danger {
+        width: 63%;
+        margin: auto;
     }
 }
 
@@ -240,6 +259,10 @@ body {
     .btnTeclado {
         min-width: 120px !important;
         font-size: 16px !important;
+    }
+    .alert-danger {
+        width: 30%;
+        margin: auto;
     }
 }
 
