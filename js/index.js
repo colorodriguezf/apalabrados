@@ -164,11 +164,11 @@
         let letraSecreta = palabraSecreta.charAt(index);       
         if (letraIngresada === letraSecreta) {
             if (!$(this).hasClass('verde')) {
-                $(this).css('background', 'green').addClass('verde');
+                $(this).addClass('verde');
                 
                 //pongo el color del teclado en verde
                 let letraBoton = letraIngresada.toLowerCase();
-                $('#teclado .btn-teclado.' + letraBoton).css('background', 'green').addClass('verde');
+                $('#teclado .btn-teclado.' + letraBoton).addClass('verde');
                 
                 
                 let letraEnLetras = letras[letraIngresada];
@@ -194,13 +194,13 @@
                 //si existe && no coincide la posicion && esta disponible && y no fue marcada como posicion correcta en verde (sino marcaria la correcta como amarillo)
                 if (letraEnLetras && !letraEnLetras.posiciones.includes(index) && letraEnLetras.disponible && !$(this).hasClass('verde')) {
                     if (!$(this).hasClass('amarillo')) {
-                        $(this).css('background', 'yellow').addClass('amarillo');
+                        $(this).addClass('amarillo');
                         
                             let letraBoton = letraIngresada.toLowerCase();
                             //pongo el color del teclado en amarillo si no tiene la clase verde
                             //puede tener verde, y amarillo en la matriz (en el teclado solo hay 1 letra, se prioriza la verde)
                             if(!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde')) {
-                                $('#teclado .btn-teclado.' + letraBoton).css('background', 'yellow').addClass('amarillo');
+                                $('#teclado .btn-teclado.' + letraBoton).addClass('amarillo');
                             }
 
                             //si quedo alguna disponible no marcada como verde, y la voy a utilzar, sumo 1 en utilzados, asi si hay otra se marca como gris
@@ -224,19 +224,25 @@
                      //puede que no este disponible, pero que en las iteraciones anteriores se marcaron como verde/amarillo
                      //si no preguntamos la clase, lo verde/amarillo lo marca como gris
                     if (!letraEnLetras.disponible && !$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
-                        $(this).css('background', 'gray').addClass('gris');
-
+                        $(this).addClass('gris');
+                        
                         //si la letra no existe marcamos el teclado en gris
                         let letraBoton = letraIngresada.toLowerCase();
-                        $('#teclado .btn-teclado.' + letraBoton).css('background', 'grey').addClass('gris');
+
+                        //solo pongo gris el teclado, si no tiene ningun color
+                        //ej: si la letra M estaba en verde, y en la otra linea la pongo en otro lado y se pone en amarillo, en el teclado sigue verde
+                        if (!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde') && !$('#teclado .btn-teclado.' + letraBoton).hasClass('amarillo')) {
+                            console.log("ENTROOO");
+                            $('#teclado .btn-teclado.' + letraBoton).addClass('gris');
+                        }
                         
                     }
                 } else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
-                    $(this).css('background', 'gray').addClass('gris marcado');
+                    $(this).addClass('gris marcado');
 
                     //si la letra no existe marcamos el teclado en gris
                     let letraBoton = letraIngresada.toLowerCase();
-                    $('#teclado .btn-teclado.' + letraBoton).css('background', 'grey').addClass('gris');
+                    $('#teclado .btn-teclado.' + letraBoton).addClass('gris');
                 }
             });
     
