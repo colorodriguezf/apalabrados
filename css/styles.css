@@ -239,8 +239,57 @@ body {
     }
     .modal-header {
         justify-content: center;
+        background-color: #e5ecff;
+        padding: 10px;
+    }
+    .modal-title {
+        font-weight: bold;
+    }
+    .modal-body {
+        text-align: center;
+    }
+    .modal-content {
+        border-radius: 10px;
+    }
+    .modal-footer {
+        justify-content: center;
     }
 
+    .psecreta-modal{
+        display: inline-block;
+        padding: 10px 30px;
+        font-size: 18px;
+        text-transform: uppercase;
+        vertical-align: top;
+        border-radius: 5px;
+        background: #f1f3f9;
+        border: 1px dashed #75819e;
+    }
+    .palabra-era {
+        color: #2e3239;
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .siguiente, .restart {
+        text-transform:uppercase ;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing:0.1cap;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 10px 30px;
+        line-height: 24px;
+        cursor: pointer;
+        vertical-align: top;
+        border: 0;
+        border-radius: 5px;
+        background: rgb(84, 173, 84);
+        transition: .2s;
+    }
+    .siguientehover, .restart:hover {
+        background: rgb(129, 210, 129);
+    }   
 
 
 /* TECLADO QWERTY */

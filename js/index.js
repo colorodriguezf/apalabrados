@@ -254,11 +254,10 @@
     
             if (palabraIngresada === palabraSecreta) {
                 totalPalabrasAcertadas++;
-                $('.modal_resultado .modal-title').text('Ganaste');
+                $('.modal_resultado .modal-title').text('¡Ganaste!');
                 mostrarAlerta('¡Ganaste! 🏆', 'success');
                 confetti();                    
-                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
-                if (totalPalabrasAcertadas > 0) {
+                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');                if (totalPalabrasAcertadas > 0) {
                     $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
                 }                
                 $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente palabra');
@@ -276,9 +275,8 @@
                 obtenerInputClickeado();
             } else if (intentoActual == maximo_intento) {
                 mostrarAlerta('¡Perdiste!', 'danger')
-                $('.modal_resultado .modal-title').text("Perdiste!");
-                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
-                if (totalPalabrasAcertadas >= 0) {
+                $('.modal_resultado .modal-title').text("¡Perdiste!");
+                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');                if (totalPalabrasAcertadas >= 0) {
                     $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
                     $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
                 }
@@ -372,9 +370,8 @@
     
 
     $('.btn-meRindo').on('click', function () {
-        $('.modal_resultado .modal-title').text("Te rendiste!");
-        $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
-        $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
+        $('.modal_resultado .modal-title').text("¡Te rendiste!");
+        $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');        $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
         $('.modal_resultado').modal('show');
 
     });
