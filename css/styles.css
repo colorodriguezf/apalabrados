@@ -53,11 +53,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     color: #fff;
     margin:4px;
-    font-size: 1em;
+    font-size: 1.2em;
     border-radius: 4px;
     border: none;
 }
@@ -111,6 +111,25 @@ body {
         text-align: center;
         justify-content: center;
         gap: 16px;
+    }
+    .btn-group-controles button {
+        border-radius: 7px;
+        height: 34px;
+        padding: 0 16px;
+        font-size: 13px;
+        transition: .2s;
+        cursor: pointer;
+    }
+
+    .btn-meRindo {
+        color: #414a5e;
+        background: #ebedf3;
+        font-weight: 700;
+        border: 1px solid transparent;
+    }
+    .btn-meRindo:hover {
+        background-color: rgb(246, 224, 224);
+        color:rgb(157, 114, 114);
     }
 
     .tecla {

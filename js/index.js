@@ -235,7 +235,6 @@
                         //solo pongo gris el teclado, si no tiene ningun color
                         //ej: si la letra M estaba en verde, y en la otra linea la pongo en otro lado y se pone en amarillo, en el teclado sigue verde
                         if (!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde') && !$('#teclado .btn-teclado.' + letraBoton).hasClass('amarillo')) {
-                            console.log("ENTROOO");
                             $('#teclado .btn-teclado.' + letraBoton).addClass('gris');
                         }
                         
@@ -276,7 +275,6 @@
                 inputIntentoClickeado = siguienteFila;
                 obtenerInputClickeado();
             } else if (intentoActual == maximo_intento) {
-                console.log("PERDISTE");
                 mostrarAlerta('¡Perdiste!', 'danger')
                 $('.modal_resultado .modal-title').text("Perdiste!");
                 $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
@@ -322,7 +320,6 @@
     $(document).on('click', '.siguiente', function () {
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
-        console.log("ENTROO")
         iniciarJuego(cantidadLetras);
     });
     
@@ -334,14 +331,11 @@
     });
 
 
+
+    //Animacion dar vuelta input matriz
     function mostrarAnimacionLetrasInout(input) {
         $(input).addClass('flip-animation');
-
     }
-
-
-
-
 
     //Titulo menu juego
     let palabraObjetivo = "APALABRADOS";
@@ -374,6 +368,15 @@
                 }
             }, 400);
         }, pos * 150);
+    });
+    
+
+    $('.btn-meRindo').on('click', function () {
+        $('.modal_resultado .modal-title').text("Te rendiste!");
+        $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
+        $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
+        $('.modal_resultado').modal('show');
+
     });
     
     
