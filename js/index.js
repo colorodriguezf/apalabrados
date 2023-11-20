@@ -1,6 +1,5 @@
 
   "use strict";
-//   import "palabrasRandom";
     let cantidadLetras = 0;
     let palabras = ""; //arreglo de palabras
     let palabraSecreta = "";
@@ -10,7 +9,7 @@
         intentoActual = 1;
         posicionActual = 0;
         cantidadLetras = ndificultad;
-        $('.container').css('display', 'none'); //saco menu
+        $('.center-container').css('display', 'none'); //saco menu
         $('.contenedor-juego').css('display', 'block');//muestro juego
         generarInterfazJuego();
         if(ndificultad == 4) {
@@ -22,6 +21,7 @@
         } else if( ndificultad == 5) {
             palabras = palabras7Letras;
         }
+        
        
         palabraSecreta = generarPalabra(palabras);
         console.log(palabraSecreta);
@@ -82,11 +82,11 @@
         valorTecla = $(this).text();
 
         if (inputIntentoClickeado) {
-            inputIntentoClickeado.val(valorTecla);
+            inputIntentoClickeado.val(valorTecla).addClass('efecto-input-letra');
             posicionActual = inputIntentoClickeado.index();
         } else {
             let primerInput = $(".intento" + intentoActual + " .input-box.pos0");
-            primerInput.val(valorTecla);
+            primerInput.val(valorTecla).addClass('efecto-input-letra');
             posicionActual = 0;
         }
         let valorSig = posicionActual+1;
@@ -108,12 +108,12 @@
             let posicionActual = inputIntentoClickeado.index();
     
             if (contenidoActual !== '') {
-                inputIntentoClickeado.val('');
+                inputIntentoClickeado.val('').removeClass('efecto-input-letra');;
             } else {
                 if (posicionActual > 0) {
                     let inputAnterior = $(".intento" + intentoActual + " .input-box.pos" + (posicionActual - 1));
                     inputIntentoClickeado = inputAnterior;
-                    inputAnterior.val("");
+                    inputAnterior.val("").removeClass('efecto-input-letra');;
                 }
             }
     
@@ -126,17 +126,17 @@
     let enviarBtn = $(".btnTeclado.btn-enviar");
     enviarBtn.click(enviarRespuesta);
 
-    function enviarRespuesta() {        
+   async function enviarRespuesta() {        
         //verifico si no hay inputs vacios
         let inputsVacios = $('.intento' + intentoActual + ' .input-box').filter(function () {
             return $(this).val().trim() === '';
         });
         
         if (inputsVacios.length > 0) {
-            $('.campoIncompleto').css('display', 'block');
+            mostrarAlerta('Completa todos los campos', 'warning');
         } else {
             //si no hay inputs vacios sigo con la logica del juego
-            $('.campoIncompleto').css('display', 'none');
+            $('.alert').css('display', 'none');
 
             let letras = {};  
             //objeto letras con posiciones, cantidad, utilizados y disponibilidad
@@ -184,6 +184,8 @@
                 }
             }
         }
+        mostrarAnimacionLetrasInout(this);
+        // $(this).addClass('flip-animation');
     });
 
     
@@ -212,6 +214,8 @@
                         }
                     }
                 }
+                mostrarAnimacionLetrasInout(this);
+                // $(this).addClass('flip-animation');
             });
     
             // Iteración 3: busca letras que no existan, o que si pero no esten disponibles, marca en gris
@@ -225,10 +229,9 @@
                      //si no preguntamos la clase, lo verde/amarillo lo marca como gris
                     if (!letraEnLetras.disponible && !$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
                         $(this).addClass('gris');
-                        
                         //si la letra no existe marcamos el teclado en gris
                         let letraBoton = letraIngresada.toLowerCase();
-
+                        
                         //solo pongo gris el teclado, si no tiene ningun color
                         //ej: si la letra M estaba en verde, y en la otra linea la pongo en otro lado y se pone en amarillo, en el teclado sigue verde
                         if (!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde') && !$('#teclado .btn-teclado.' + letraBoton).hasClass('amarillo')) {
@@ -239,25 +242,33 @@
                     }
                 } else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
                     $(this).addClass('gris marcado');
-
+                    
                     //si la letra no existe marcamos el teclado en gris
                     let letraBoton = letraIngresada.toLowerCase();
                     $('#teclado .btn-teclado.' + letraBoton).addClass('gris');
                 }
+                mostrarAnimacionLetrasInout(this);
+                // $(this).addClass('flip-animation');
             });
     
             let palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
     
             if (palabraIngresada === palabraSecreta) {
                 totalPalabrasAcertadas++;
-                console.log(totalPalabrasAcertadas);
                 $('.modal_resultado .modal-title').text('Ganaste');
+                mostrarAlerta('¡Ganaste! 🏆', 'success');
+                confetti();                    
                 $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
                 if (totalPalabrasAcertadas > 0) {
                     $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
-                }
+                }                
                 $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente palabra');
-                $('.modal_resultado').modal('show');
+                setTimeout(() => {
+                    $('.modal_resultado').modal({
+                        backdrop: false
+                    });
+                    $('.modal_resultado').modal('show');
+                }, 3000);
             } else if (intentoActual < maximo_intento) {
                 intentoActual++;
                 let siguienteFila = $(".intento" + intentoActual + " .input-box.pos0");
@@ -266,15 +277,17 @@
                 obtenerInputClickeado();
             } else if (intentoActual == maximo_intento) {
                 console.log("PERDISTE");
+                mostrarAlerta('¡Perdiste!', 'danger')
                 $('.modal_resultado .modal-title').text("Perdiste!");
                 $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era: <strong>' + palabraSecreta.toUpperCase() + '</strong></p>');
                 if (totalPalabrasAcertadas >= 0) {
                     $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
                     $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
                 }
-                $('.modal_resultado').modal('show');
-            }     
-            
+                setTimeout(() => {
+                    $('.modal_resultado').modal('show');
+                }, 800);
+            }                
     
             // Una vez iterado 3 veces (3 colores), vuelvo al objeto original, asi puedo iterar
             //por cada fila(intento) sin que cuenten los intentos anteriores (no se pisan).
@@ -282,6 +295,21 @@
             }
         }
 
+    }
+    
+
+
+    function mostrarAlerta(mensaje, tipo) {
+        let alerta = $('.alert');
+        alerta.text(mensaje);
+        alerta.removeClass('alert-danger alert-success').addClass(`alert-${tipo}`);
+        alerta.css('display', 'block');
+    }
+
+    async function confetti() {
+        import('https://cdn.skypack.dev/canvas-confetti').then((confetti) => {
+            confetti.default();
+        });
     }
 
     $(document).on('click', '.restart', function () {
@@ -301,12 +329,52 @@
     $('.modal_resultado .volver_menu').on('click', function () {
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         $('.contenedor-juego').css('display', 'none');
-        $('.container-menu').css('display', 'block');
+        $('.center-container').css('display', 'flex');
         totalPalabrasAcertadas = 0;
     });
 
 
-    
+    function mostrarAnimacionLetrasInout(input) {
+        $(input).addClass('flip-animation');
+
+    }
+
+
+
+
+
+    //Titulo menu juego
+    let palabraObjetivo = "APALABRADOS";
+    let palabraComparar = "APALAVRADSO";
+    let letterBoxes = document.querySelectorAll('.letter-box');
+
+    function animateLetter(pos, colorClass, valorLetra) {
+        setTimeout(() => {
+            letterBoxes[pos].classList.remove('amarilloMenu', 'grisMenu');
+            letterBoxes[pos].classList.add(colorClass);
+            letterBoxes[pos].innerHTML = valorLetra;
+        }, pos * 420);
+    }
+
+    letterBoxes.forEach((contenedorLetra, pos) => {
+        let letraObjetivo = palabraObjetivo[pos];
+        let letraComparar = palabraComparar[pos];
+
+        setTimeout(() => {
+            contenedorLetra.classList.add('animacionTitulo');
+            setTimeout(() => {
+                if (letraComparar === letraObjetivo) {
+                    contenedorLetra.classList.add('verdeMenu');
+                } else if (palabraObjetivo.includes(letraComparar)) {
+                    contenedorLetra.classList.add('amarilloMenu');
+                    animateLetter(pos, 'verdeMenu', letraObjetivo);
+                } else {
+                    contenedorLetra.classList.add('grisMenu');
+                    animateLetter(pos, 'verdeMenu', letraObjetivo);
+                }
+            }, 400);
+        }, pos * 150);
+    });
     
     
     

@@ -10,11 +10,23 @@
 </head>
 <body>
     
-  <div class=" container center-container">
+  <div class="center-container">
     <div class="container container-menu">
+      <div class="word-container">
+        <div class="letter-box">A</div>
+        <div class="letter-box">P</div>
+        <div class="letter-box">A</div>
+        <div class="letter-box">L</div>
+        <div class="letter-box">A</div>
+        <div class="letter-box">V</div>
+        <div class="letter-box">R</div>
+        <div class="letter-box">A</div>
+        <div class="letter-box">D</div>
+        <div class="letter-box">S</div>
+        <div class="letter-box">O</div>
+    </div>
         <div class="menu">
-            <h1>Apalabrados</h1>
-            <h2>Dificultad:</h2>
+            <h3>Dificultad:</h3>
             <div class="row">
                 <div class="col-md-6 offset-md-3 col-sm-12">
                     <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(4)"> 4 Letras</button>
@@ -46,21 +58,18 @@
 
         <div class="input-matrix" id="input-matrix"></div>
 
-        <div class="alert alert-danger campoIncompleto" role="alert">
-            Completa todos los campos
+        <div class="alert" role="alert">
+     
         </div>
 
-        <div class="modal modal_resultado" tabindex="-1" role="dialog">
+        <div class="modal modal_resultado" tabindex="-1" role="dialog" data-backdrop="static">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title"></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                 </div>
                 <div class="modal-body">
-                  <p class="palabra-era" ></p>
+                  <p class="palabra-era"></p>
                   <p class="total-conseguido"></p>
                 </div>
                 <div class="modal-footer">
@@ -125,7 +134,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
+    <script  src="js/index.js"></script>
     <script src="js/palabrasRandom.js"></script>
 
 </body>
