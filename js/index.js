@@ -345,7 +345,7 @@
             letterBoxes[pos].classList.remove('amarilloMenu', 'grisMenu');
             letterBoxes[pos].classList.add(colorClass);
             letterBoxes[pos].innerHTML = valorLetra;
-        }, pos * 420);
+        }, pos * 280);
     }
 
     letterBoxes.forEach((contenedorLetra, pos) => {
@@ -364,8 +364,8 @@
                     contenedorLetra.classList.add('grisMenu');
                     animateLetter(pos, 'verdeMenu', letraObjetivo);
                 }
-            }, 400);
-        }, pos * 150);
+            }, 1);
+        }, pos * 140); //tiempo en caer la letra
     });
     
 
