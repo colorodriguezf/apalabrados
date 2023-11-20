@@ -30,6 +30,7 @@ body {
   .menu h3 {
     text-align: center;
     color: #2c3e50;
+    font-size: 1.5rem;
   }
   .btn-dificultad {
     width: 100%;
@@ -46,7 +47,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5vh;
+    margin-bottom: 2vh !important;
+    margin: auto;
 }
 
 .letter-box {
@@ -349,6 +351,9 @@ body {
 }
 
 @media only screen and (min-width: 720px) {
+    .word-container {
+        width: 60%;
+    }
 
     #teclado {
         margin-top: 20px;
@@ -401,8 +406,11 @@ body {
 }
 
 @media only screen and (min-width: 1200px) {
+    .word-container {
+       width: 65%;
+    }
     .container-menu {
-        width: 60%;
+        width: 35%;
     }
     #teclado div button {
         /* padding:22px; */
