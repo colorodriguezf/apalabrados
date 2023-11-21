@@ -10,7 +10,7 @@ body {
 
 /* Menu juego */
 .center-container {
-    height: 100vh;
+    margin-top: 6vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,3 +435,43 @@ body {
 /* ---------------------------------- */
 
 
+/* ===== FOOTER =====*/
+.footer {
+    background-color: #fff;
+    color: #080808;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 12vh;
+    box-shadow: 0px 0px 100vh rgba(252, 89, 141, 0.103);
+    
+}
+  
+  .footer__title {
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+  }
+
+  .footer__icon {
+    font-size: 1.5rem;
+    color: #080808;
+    margin: 0 1rem;
+  }
+  
+  .footer__icon:hover i{
+    color: #ff004f;
+    transform: scale(1.2);
+    transition: color 0.5s, transform 0.5s;
+  }
+  .footer__copy span, .footer__title span {
+    color: #ff004f;
+    font-weight: bold;
+  }
+  .punto__logo {
+    font-size:40px;
+  }
+  
+  .footer__copy {
+    font-size: .9rem;
+    margin-bottom: 1rem;
+  }
+  /* ----------------------------- */
