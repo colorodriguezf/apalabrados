@@ -330,7 +330,7 @@
                 palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
                 palabraSecretaModoJuego = palabraSecreta;
             }
-            console.log(palabraIngresadaEmoji, palabraSecreta);
+            // console.log(palabraIngresadaEmoji, palabraSecreta);
             if (palabraIngresada === palabraSecreta) {
                 totalPalabrasAcertadas++;
                 $('.modal_resultado .modal-title').text('¡Ganaste!');
