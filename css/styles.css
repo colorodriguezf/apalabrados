@@ -10,10 +10,10 @@ body {
 
 /* Menu juego */
 .center-container {
-    margin-top: 6vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 79vh;
 }
   .container-menu {
     border: 1px solid #ddd;
@@ -105,6 +105,7 @@ body {
       display: none;
       margin-top: 5vh !important;
       padding: 2%;
+      min-height: 80vh;
       margin: auto;
     }
 
@@ -296,7 +297,8 @@ body {
 
 /* TECLADO QWERTY */
 
-#teclado {
+/* Palabras */
+#tecladoPalabras {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -305,17 +307,17 @@ body {
     margin-top: 10px;
 }
 
-#teclado > div {
+#tecladoPalabras > div {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     gap: 3px;
 }
 
-.btn-teclado {
+#tecladoPalabras .btn-teclado {
     text-transform: uppercase;
     flex: 1;
-    max-width: 45px; /* Puedes ajustar el valor máximo según tus necesidades */
+    max-width: 45px;
     margin: 0 1px;
     padding: 6px;
     font-size: 14px;
@@ -330,16 +332,8 @@ body {
     transition: 0.2s;
 }
 
-.btn-teclado:hover, .btnTeclado:hover {
-    background-color: #a4aec4;
-}
-
-.btn-teclado:focus, .btnTeclado:focus {
-    outline: none;
-}
-
-.btnTeclado {
-    flex: 2; /* Este botón ocupa más espacio */
+#tecladoPalabras .btnTeclado {
+    flex: 2;
     width: auto;
     min-width: 50px;
     background-color: #dce1ed;
@@ -350,20 +344,73 @@ body {
     border: 2px transparent;
 }
 
+
+/* Emojis */
+#tecladoEmojis {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#tecladoEmojis > div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 2px;
+}
+
+
+#tecladoEmojis .btn-teclado {
+    display: flex;
+    /* max-width: 50px; */
+    margin: 0 1px;
+    padding: 8px;
+    font-size: 30px;
+    background-color: #dce1ed;
+    color: #414a5e;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px transparent;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+#tecladoEmojis .btnTeclado {
+    flex: 2;
+    width: auto;
+    background-color: #dce1ed;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px;
+    border-radius: 4px;
+    border: 2px transparent;
+    text-align: center;
+}
+
+
+.btn-teclado:focus, .btnTeclado:focus {
+    outline: none;
+}
+
 @media only screen and (min-width: 720px) {
     .word-container {
         width: 60%;
     }
 
-    #teclado {
+    #tecladoPalabras {
         margin-top: 20px;
         max-width: 900px;
     }
-    #teclado div {
+    #tecladoPalabras div {
         justify-content: center;
     }
     
-    #teclado div button {
+    #tecladoPalabras div button {
         /* padding:22px; */
         font-size: 20px;
         min-width: 60px;
@@ -403,6 +450,10 @@ body {
         width: 63%;
         margin: auto;
     }
+    #tecladoEmojis .btn-teclado:hover,
+    #tecladoEmojis .btnTeclado:hover {
+    background-color: #a4aec4;
+}
 }
 
 @media only screen and (min-width: 1200px) {
@@ -441,9 +492,7 @@ body {
     color: #080808;
     text-align: center;
     font-weight: 600;
-    margin-top: 12vh;
     box-shadow: 0px 0px 100vh rgba(252, 89, 141, 0.103);
-    
 }
   
   .footer__title {
@@ -472,6 +521,6 @@ body {
   
   .footer__copy {
     font-size: .9rem;
-    margin-bottom: 1rem;
+    margin: 0;
   }
   /* ----------------------------- */

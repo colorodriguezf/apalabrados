@@ -4,30 +4,66 @@
     let palabras = ""; //arreglo de palabras
     let palabraSecreta = "";
     let totalPalabrasAcertadas = 0;
+    let modoJuego = "";
+    let palabraSecretaEmoji = "";
 
-    function iniciarJuego(ndificultad) {
+    // Modo de juego
+    let modoPalabras = 'palabras';
+    let modoEmojis = 'emojis';
+    let modoFechas = 'fechas';
+
+    function iniciarJuego(modo, ndificultad) {
+        modoJuego= modo;
         intentoActual = 1;
         posicionActual = 0;
-        cantidadLetras = ndificultad;
+        palabraSecretaEmoji = "";
+
+        if(modo == modoPalabras) {
+            cantidadLetras = ndificultad;
+                if(ndificultad == 4) {
+                palabras = palabras4Letras;
+                } else if( ndificultad == 5) {
+                    palabras = palabras5Letras;
+                } else if( ndificultad == 6) {
+                    palabras = palabras6Letras;
+                } else if( ndificultad == 5) {
+                    palabras = palabras7Letras;
+                }
+                $('#tecladoEmojis').css('display', 'none');
+                $('#tecladoPalabras').css('display', 'block');
+
+                palabraSecreta = generarPalabra(palabras);
+
+        } else if (modo == modoEmojis) {
+            cantidadLetras = ndificultad;
+            palabras = [ 
+                "q", "w", "e", "r", "t",
+                "a", "s", "d", "f", "g",
+                "z", "x", "c", "v", "b"
+            ]
+            palabraSecreta = generarPalabraEmoji(palabras);
+
+            //obtengo el valor de la palabra en emoji, para mostrar en el modal rendiste/perdiste
+            for (let i = 0; i < palabraSecreta.length; i++) {
+                let letra = palabraSecreta[i];
+                let letraEmoji = obtenerValorEmojiLetra(letra);           
+                palabraSecretaEmoji += letraEmoji;
+            }
+            
+            $('#tecladoPalabras').css('display', 'none');
+            $('#tecladoEmojis').css('display', 'block');
+
+        }else if (modo == modoFechas) {
+
+        }
         $('.center-container').css('display', 'none'); //saco menu
         $('.contenedor-juego').css('display', 'block');//muestro juego
         generarInterfazJuego();
-        if(ndificultad == 4) {
-         palabras = palabras4Letras;
-        } else if( ndificultad == 5) {
-            palabras = palabras5Letras;
-        } else if( ndificultad == 6) {
-            palabras = palabras6Letras;
-        } else if( ndificultad == 5) {
-            palabras = palabras7Letras;
-        }
         
        
-        palabraSecreta = generarPalabra(palabras);
-        console.log(palabraSecreta);
+        // console.log(palabraSecreta);
     }
 
-    const qwerty = "qwertyuiopasdfghjklñzxcvbnm";
     let intentoActual = 1; //input-row
     let maximo_intento = 6;
     let posicionActual = 0; //pos de los input dentro de input-row
@@ -36,6 +72,17 @@
 
     function generarPalabra(palabras) {
         return palabras[Math.floor(Math.random() * palabras.length)];
+    }
+
+    function generarPalabraEmoji(emojis) {
+        let palabraGenerada = '';
+        
+        for (let i = 0; i < cantidadLetras; i++) {
+            let emojiAleatorio = emojis[Math.floor(Math.random() * emojis.length)];
+            palabraGenerada += emojiAleatorio;
+        }
+    
+        return palabraGenerada;
     }
 
     function generarInterfazJuego() {
@@ -80,6 +127,7 @@
     $(".btn-teclado").on("click", function () {
         let valorTecla = "";
         valorTecla = $(this).text();
+        // console.log(valorTecla);
 
         if (inputIntentoClickeado) {
             inputIntentoClickeado.val(valorTecla).addClass('efecto-input-letra');
@@ -140,6 +188,7 @@
 
             let letras = {};  
             //objeto letras con posiciones, cantidad, utilizados y disponibilidad
+            // console.log(palabraSecreta)
         for (let i = 0; i < palabraSecreta.length; i++) {
             let letra = palabraSecreta[i];
     
@@ -150,6 +199,7 @@
                 letras[letra].cantidad++;
             }
         }
+        // console.log(letras)
 
         //copiar el objeto letras antes de las iteraciones
         let letrasOriginal = JSON.parse(JSON.stringify(letras));
@@ -159,16 +209,23 @@
        
         // Iteración 1: busca solo las letras que coinciden en la posicion, y las marca verde
         contenedor.find('.input-box').each(function (index) {
-        
-        let letraIngresada = $(this).val();
-        let letraSecreta = palabraSecreta.charAt(index);       
+            let letraIngresada = "";
+            if(modoJuego == modoEmojis) {
+                letraIngresada = obtenerValorEmojiLetra($(this).val());
+            }
+        else if (modoJuego == modoPalabras) {
+            letraIngresada = $(this).val();
+        }
+        // console.log(letraIngresada)
+        let letraSecreta = palabraSecreta.charAt(index);  
+        // console.log(letraSecreta);     
         if (letraIngresada === letraSecreta) {
             if (!$(this).hasClass('verde')) {
                 $(this).addClass('verde');
                 
                 //pongo el color del teclado en verde
                 let letraBoton = letraIngresada.toLowerCase();
-                $('#teclado .btn-teclado.' + letraBoton).addClass('verde');
+                $('.btn-teclado.' + letraBoton).addClass('verde');
                 
                 
                 let letraEnLetras = letras[letraIngresada];
@@ -191,7 +248,13 @@
     
             // Iteración 2: busca letras que existan pero no coincida la posicion, y las marca de amarillo. (siempre que esten disponibles, sino gris)
             contenedor.find('.input-box').each(function (index) {
-                let letraIngresada = $(this).val();
+                let letraIngresada = "";
+                if(modoJuego == modoEmojis) {
+                    letraIngresada = obtenerValorEmojiLetra($(this).val());
+                }
+            else if (modoJuego == modoPalabras) {
+                letraIngresada = $(this).val();
+            }
                 let letraEnLetras = letras[letraIngresada];
                 //si existe && no coincide la posicion && esta disponible && y no fue marcada como posicion correcta en verde (sino marcaria la correcta como amarillo)
                 if (letraEnLetras && !letraEnLetras.posiciones.includes(index) && letraEnLetras.disponible && !$(this).hasClass('verde')) {
@@ -201,8 +264,8 @@
                             let letraBoton = letraIngresada.toLowerCase();
                             //pongo el color del teclado en amarillo si no tiene la clase verde
                             //puede tener verde, y amarillo en la matriz (en el teclado solo hay 1 letra, se prioriza la verde)
-                            if(!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde')) {
-                                $('#teclado .btn-teclado.' + letraBoton).addClass('amarillo');
+                            if(!$('.btn-teclado.' + letraBoton).hasClass('verde')) {
+                                $('.btn-teclado.' + letraBoton).addClass('amarillo');
                             }
 
                             //si quedo alguna disponible no marcada como verde, y la voy a utilzar, sumo 1 en utilzados, asi si hay otra se marca como gris
@@ -220,7 +283,13 @@
     
             // Iteración 3: busca letras que no existan, o que si pero no esten disponibles, marca en gris
             contenedor.find('.input-box').each(function (index) {
-                let letraIngresada = $(this).val();
+                let letraIngresada = "";
+                if(modoJuego == modoEmojis) {
+                    letraIngresada = obtenerValorEmojiLetra($(this).val());
+                }
+                else if (modoJuego == modoPalabras) {
+                    letraIngresada = $(this).val();
+                }
                 let letraEnLetras = letras[letraIngresada];
             
                 if (letraEnLetras) {
@@ -234,30 +303,40 @@
                         
                         //solo pongo gris el teclado, si no tiene ningun color
                         //ej: si la letra M estaba en verde, y en la otra linea la pongo en otro lado y se pone en amarillo, en el teclado sigue verde
-                        if (!$('#teclado .btn-teclado.' + letraBoton).hasClass('verde') && !$('#teclado .btn-teclado.' + letraBoton).hasClass('amarillo')) {
-                            $('#teclado .btn-teclado.' + letraBoton).addClass('gris');
+                        if (!$('.btn-teclado.' + letraBoton).hasClass('verde') && !$('.btn-teclado.' + letraBoton).hasClass('amarillo')) {
+                            $('.btn-teclado.' + letraBoton).addClass('gris');
                         }
                         
                     }
-                } else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
-                    $(this).addClass('gris marcado');
-                    
+                }                 
+                else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {            
                     //si la letra no existe marcamos el teclado en gris
                     let letraBoton = letraIngresada.toLowerCase();
-                    $('#teclado .btn-teclado.' + letraBoton).addClass('gris');
+                    $('.btn-teclado.' + letraBoton).addClass('gris');
+                    $(this).addClass('gris');
                 }
                 mostrarAnimacionLetrasInout(this);
                 // $(this).addClass('flip-animation');
             });
-    
-            let palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
-    
+
+            let palabraIngresada = ""; //modo palabras
+            let palabraIngresadaEmoji = ""; //modo emojis
+            let palabraSecretaModoJuego = ""; //si el modo es emoji, te muestra emojis en el modal, sino letras
+            if(modoJuego == modoEmojis) {
+                palabraIngresada = contenedor.find('.input-box').toArray().map(input => obtenerValorEmojiLetra($(input).val())).join('');
+                palabraIngresadaEmoji =  contenedor.find('.input-box').toArray().map(input => $(input).val()).join(''); //guardo los emojis para mostrar en el modal al finalziar
+                palabraSecretaModoJuego = palabraIngresadaEmoji;
+            } else if (modoJuego == modoPalabras) {
+                palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
+                palabraSecretaModoJuego = palabraSecreta;
+            }
+            console.log(palabraIngresadaEmoji, palabraSecreta);
             if (palabraIngresada === palabraSecreta) {
                 totalPalabrasAcertadas++;
                 $('.modal_resultado .modal-title').text('¡Ganaste!');
                 mostrarAlerta('¡Ganaste! 🏆', 'success');
-                confetti();                    
-                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');                if (totalPalabrasAcertadas > 0) {
+                confetti();               
+                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaModoJuego + '</p>');                if (totalPalabrasAcertadas > 0) {
                     $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
                 }                
                 $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente palabra');
@@ -276,7 +355,13 @@
             } else if (intentoActual == maximo_intento) {
                 mostrarAlerta('¡Perdiste!', 'danger')
                 $('.modal_resultado .modal-title').text("¡Perdiste!");
-                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');                if (totalPalabrasAcertadas >= 0) {
+                if(modoJuego == modoEmojis) {
+                    $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaEmoji + '</p>');
+                }
+                else if (modoJuego == modoPalabras) {
+                    $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');
+                }
+                if (totalPalabrasAcertadas >= 0) {
                     $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
                     $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
                 }
@@ -292,7 +377,41 @@
         }
 
     }
-    
+
+
+    function obtenerValorEmojiLetra(valor) {
+        let emojiToLetter = {
+            '🦊': 'q',
+            '🐷': 'w',
+            '🐶': 'e',
+            '🐰': 'r',
+            '😺': 't',
+            '🐸': 'a',
+            '🐯': 's',
+            '🐙': 'd',
+            '🐨': 'f',
+            '🐳': 'g',
+            '🦄': 'z',
+            '🐹': 'x',
+            '🐮': 'c',
+            '🐥': 'v',
+            '🐼': 'b',
+        };
+
+        if (valor in emojiToLetter) {
+            //Si esta, quiere decir que es un emoji, devuelvo el valor
+            return emojiToLetter[valor];
+        } else {
+            // si no esta, es una letra, devuelvo la clave (emoji)
+            let letraToEmoji = Object.entries(emojiToLetter).find(entry => entry[1] === valor);
+            if (letraToEmoji) {
+                return letraToEmoji[0];
+            } else {
+                // Si no se encuentra una coincidencia, devolver el mismo valor
+                return valor;
+            }
+    }
+}
 
 
     function mostrarAlerta(mensaje, tipo) {
@@ -312,13 +431,13 @@
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         totalPalabrasAcertadas = 0;
-        iniciarJuego(cantidadLetras);
+        iniciarJuego(modoJuego, cantidadLetras);
     });
     
     $(document).on('click', '.siguiente', function () {
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
-        iniciarJuego(cantidadLetras);
+        iniciarJuego(modoJuego, cantidadLetras);
     });
     
     $('.modal_resultado .volver_menu').on('click', function () {
@@ -327,6 +446,11 @@
         $('.center-container').css('display', 'flex');
         totalPalabrasAcertadas = 0;
     });
+
+
+
+
+
 
 
 
@@ -371,7 +495,13 @@
 
     $('.btn-meRindo').on('click', function () {
         $('.modal_resultado .modal-title').text("¡Te rendiste!");
-        $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');        $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
+        if(modoJuego == modoEmojis) {
+            $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaEmoji + '</p>');        
+        }
+        else if (modoJuego == modoPalabras) {
+            $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');              
+        }
+        $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
         $('.modal_resultado').modal('show');
 
     });

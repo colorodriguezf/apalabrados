@@ -31,11 +31,26 @@
             <h3>Dificultad:</h3>
             <div class="row">
                 <div class="col-md-6 offset-md-3 col-sm-12">
-                    <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(4)"> 4 Letras</button>
-                    <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(5)"> 5 Letras</button>
-                    <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(6)"> 6 Letras</button>
-                    <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego(7)"> 7 Letras</button>
+                  <p>Palabras</p>
+                  <ul>
+                     <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 4)"> 4 Letras</button></li>
+                     <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 5)"> 5 Letras</button></li>
+                     <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 6)"> 6 Letras</button></li>
+                     <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 7)"> 7 Letras</button></li>
+                  </ul>         
                 </div>
+            </div>
+            <div>
+              <p> Emojis 🐶🐱🐷</p>
+              <ul>
+                <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 4)"> 4 Emojis</button></li>
+                <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 5)"> 5 Emojis</button></li>
+                <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 6)"> 6 Emojis</button></li>
+                <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 7)"> 7 Emojis</button></li>
+             </ul>       
+            </div>
+            <div>
+              <button class="btn btn-primary btn-dificultad" onclick="iniciarJuegoFechas()"> Fechas</button>
             </div>
         </div>
     </div>
@@ -85,40 +100,40 @@
             </div>
           </div>
         
-        <div id="teclado">
+        <div id="tecladoPalabras">
             <div>
-                <button class="btn-teclado q">q</button>
-                <button class="btn-teclado w">w</button>
-                <button class="btn-teclado e">e</button>
-                <button class="btn-teclado r">r</button>
-                <button class="btn-teclado t">t</button>
-                <button class="btn-teclado y">y</button>
-                <button class="btn-teclado u">u</button>
-                <button class="btn-teclado i">i</button>
-                <button class="btn-teclado o">o</button>
-                <button class="btn-teclado p">p</button>
+                <button class="btn-teclado q" data-letra="q">q</button>
+                <button class="btn-teclado w" data-letra="w">w</button>
+                <button class="btn-teclado e" data-letra="e">e</button>
+                <button class="btn-teclado r" data-letra="r">r</button>
+                <button class="btn-teclado t" data-letra="t">t</button>
+                <button class="btn-teclado y" data-letra="y">y</button>
+                <button class="btn-teclado u" data-letra="u">u</button>
+                <button class="btn-teclado i" data-letra="i">i</button>
+                <button class="btn-teclado o" data-letra="o">o</button>
+                <button class="btn-teclado p" data-letra="p">p</button>
             </div>
             <div>
-                <button class="btn-teclado a">a</button>
-                <button class="btn-teclado s">s</button>
-                <button class="btn-teclado d">d</button>
-                <button class="btn-teclado f">f</button>
-                <button class="btn-teclado g">g</button>
-                <button class="btn-teclado h">h</button>
-                <button class="btn-teclado j">j</button>
-                <button class="btn-teclado k">k</button>
-                <button class="btn-teclado l">l</button>
-                <button class="btn-teclado ñ">ñ</button>
+                <button class="btn-teclado a" data-letra="a">a</button>
+                <button class="btn-teclado s" data-letra="s">s</button>
+                <button class="btn-teclado d" data-letra="d">d</button>
+                <button class="btn-teclado f" data-letra="f">f</button>
+                <button class="btn-teclado g" data-letra="g">g</button>
+                <button class="btn-teclado h" data-letra="h">h</button>
+                <button class="btn-teclado j" data-letra="j">j</button>
+                <button class="btn-teclado k" data-letra="k">k</button>
+                <button class="btn-teclado l" data-letra="l">l</button>
+                <button class="btn-teclado ñ" data-letra="ñ">ñ</button>
             </div>
             <div>
                 <button class="btnTeclado btn-enviar">ENVIAR</button>
-                <button class="btn-teclado z">z</button>
-                <button class="btn-teclado x">x</button>
-                <button class="btn-teclado c">c</button>
-                <button class="btn-teclado v">v</button>
-                <button class="btn-teclado b">b</button>
-                <button class="btn-teclado n">n</button>
-                <button class="btn-teclado m">m</button>
+                <button class="btn-teclado z" data-letra="z">z</button>
+                <button class="btn-teclado x" data-letra="x">x</button>
+                <button class="btn-teclado c" data-letra="c">c</button>
+                <button class="btn-teclado v" data-letra="v">v</button>
+                <button class="btn-teclado b" data-letra="b">b</button>
+                <button class="btn-teclado n" data-letra="n">n</button>
+                <button class="btn-teclado m" data-letra="m">m</button>
                 <button class="btnTeclado btn-eliminar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
                       <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
@@ -127,6 +142,37 @@
               </button>
             </div>
         </div>
+        <div id="tecladoEmojis">
+          <div>
+            <button class="btn-teclado q" data-letra="q" data-emoji="🦊">🦊</button>
+            <button class="btn-teclado w" data-letra="w" data-emoji="🐷">🐷</button>
+            <button class="btn-teclado e" data-letra="e" data-emoji="🐶">🐶</button>
+            <button class="btn-teclado r" data-letra="r" data-emoji="🐰">🐰</button>
+            <button class="btn-teclado t" data-letra="t" data-emoji="😺">😺</button>
+        </div>
+        <div>
+            <button class="btn-teclado a" data-letra="a" data-emoji="🐸">🐸</button>
+            <button class="btn-teclado s" data-letra="s" data-emoji="🐯">🐯</button>
+            <button class="btn-teclado d" data-letra="d" data-emoji="🐙">🐙</button>
+            <button class="btn-teclado f" data-letra="f" data-emoji="🐨">🐨</button>
+            <button class="btn-teclado g" data-letra="g" data-emoji="🐳">🐳</button>
+        </div>
+        <div>
+            <button class="btnTeclado btn-enviar" data-letra="z">ENVIAR</button>
+            <button class="btn-teclado z" data-letra="z" data-emoji="🦄">🦄</button>
+            <button class="btn-teclado x" data-letra="x" data-emoji="🐹">🐹</button>
+            <button class="btn-teclado c" data-letra="c" data-emoji="🐮">🐮</button>
+            <button class="btn-teclado v" data-letra="v" data-emoji="🐥">🐥</button>
+            <button class="btn-teclado b" data-letra="b" data-emoji="🐼">🐼</button>
+
+              <button class="btnTeclado btn-eliminar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                    <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                    <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                </svg>
+            </button>
+          </div>
+      </div>
     
     </div>
 
@@ -148,8 +194,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script  src="js/index.js"></script>
     <script src="js/palabrasRandom.js"></script>
+
 
 </body>
 </html>
