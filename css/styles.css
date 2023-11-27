@@ -8,20 +8,6 @@ body {
     margin: 0;
 }
 
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: white !important;
-        color: black !important;
-    }
-}
-
-/* Estilos para cuando el modo oscuro está activado */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: rgb(36, 36, 36) !important;
-        color: rgb(255, 255, 255) !important;
-    }
-}
 
 /* Menu juego */
 .center-container {
