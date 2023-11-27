@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa !important; /*fuerzo para modo oscuro */
     margin: 0;
 }
 
