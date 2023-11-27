@@ -18,8 +18,8 @@ body {
 /* Estilos para cuando el modo oscuro está activado */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: white !important;
-        color: black !important;
+        background-color: rgb(36, 36, 36) !important;
+        color: rgb(255, 255, 255) !important;
     }
 }
 
