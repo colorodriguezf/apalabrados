@@ -146,18 +146,27 @@ body {
     }
     .input-matrix {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-top: 10px;
         margin-bottom: 5vh;
+       
     }
+
+    .input-row {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
     .input-box {
-        width: 45.5px;
+        width: 100%;
+        min-width: 29px;
+        max-width: 50px;
         height: 50.5px;
         border: 2px solid rgb(224, 224, 224);
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: 700;
         text-transform: uppercase;
         border-radius: 5px;
@@ -298,6 +307,8 @@ body {
 
 /* TECLADO QWERTY */
 
+/*-------------------- JUEGOS: --------------------------------*/
+
 /* Palabras */
 #tecladoPalabras {
     display: flex;
@@ -344,7 +355,7 @@ body {
     border-radius: 4px;
     border: 2px transparent;
 }
-
+/* ------------------------------------------------------ */
 
 /* Emojis */
 #tecladoEmojis {
@@ -393,6 +404,58 @@ body {
     text-align: center;
 }
 
+.psecretaEmoji {
+    font-size: 1.6rem;
+}
+
+/* ------------------------------------------ */
+/* Fechas */
+
+
+#tecladoFechas {
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#tecladoFechas > div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 2px;
+}
+
+
+#tecladoFechas .btn-teclado {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: 0;
+    margin: 0 1px;
+    font-size: 20px;
+    background-color: #dce1ed;
+    color: #414a5e;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px transparent;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+#tecladoFechas .btnTeclado {
+    width: 100%;
+    background-color: #dce1ed;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px;
+    border-radius: 4px;
+    border: 2px transparent;
+    text-align: center;
+}
+
 
 .btn-teclado:focus, .btnTeclado:focus {
     outline: none;
@@ -430,7 +493,7 @@ body {
         margin-top: 20px;
     }
     .input-box {
-        width: 62.5px;
+        width: 100%;
         max-width: 62.5px;
         height: 62.5px;
         max-height: 62.5px;
@@ -454,7 +517,11 @@ body {
     #tecladoEmojis .btn-teclado:hover,
     #tecladoEmojis .btnTeclado:hover {
     background-color: #a4aec4;
-}
+    }
+
+    #tecladoFechas {
+        width:80%;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -481,6 +548,10 @@ body {
     .alert-danger {
         width: 30%;
         margin: auto;
+    }
+
+    #tecladoFechas {
+        width: 40%;
     }
 }
 

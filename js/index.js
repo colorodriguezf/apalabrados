@@ -1,16 +1,20 @@
 
-  "use strict";
-    let cantidadLetras = 0;
-    let palabras = ""; //arreglo de palabras
-    let palabraSecreta = "";
-    let totalPalabrasAcertadas = 0;
-    let modoJuego = "";
-    let palabraSecretaEmoji = "";
+"use strict";
+let cantidadLetras = 0;
+let palabras = ""; //arreglo de palabras
+let palabraSecreta = "";
+let totalPalabrasAcertadas = 0;
+let modoJuego = "";
+let palabraSecretaEmoji = "";
+let maximo_intento = 0;
+let intentoActual = 1; //input-row
+let posicionActual = 0; //pos de los input dentro de input-row
+let inputIntentoClickeado = null;
 
-    // Modo de juego
-    let modoPalabras = 'palabras';
-    let modoEmojis = 'emojis';
-    let modoFechas = 'fechas';
+// Modo de juego
+let modoPalabras = 'palabras';
+let modoEmojis = 'emojis';
+let modoFechas = 'fechas';
 
     function iniciarJuego(modo, ndificultad) {
         modoJuego= modo;
@@ -20,6 +24,7 @@
 
         if(modo == modoPalabras) {
             cantidadLetras = ndificultad;
+            maximo_intento = 6;
                 if(ndificultad == 4) {
                 palabras = palabras4Letras;
                 } else if( ndificultad == 5) {
@@ -30,12 +35,14 @@
                     palabras = palabras7Letras;
                 }
                 $('#tecladoEmojis').css('display', 'none');
+                $('#tecladoFechas').css('display', 'none');
                 $('#tecladoPalabras').css('display', 'block');
 
                 palabraSecreta = generarPalabra(palabras);
 
         } else if (modo == modoEmojis) {
             cantidadLetras = ndificultad;
+            maximo_intento = 6;
             palabras = [ 
                 "q", "w", "e", "r", "t",
                 "a", "s", "d", "f", "g",
@@ -51,11 +58,23 @@
             }
             
             $('#tecladoPalabras').css('display', 'none');
+            $('#tecladoFechas').css('display', 'none');
             $('#tecladoEmojis').css('display', 'block');
 
         }else if (modo == modoFechas) {
+            cantidadLetras = ndificultad;
+            maximo_intento = 8;
+            $('#tecladoPalabras').css('display', 'none');
+            $('#tecladoEmojis').css('display', 'none');
+            $('#tecladoFechas').css('display', 'block');
 
+            palabraSecreta = generarFecha();
+            console.log(palabraSecreta);
         }
+
+
+
+
         $('.center-container').css('display', 'none'); //saco menu
         $('.contenedor-juego').css('display', 'block');//muestro juego
         generarInterfazJuego();
@@ -64,12 +83,8 @@
         // console.log(palabraSecreta);
     }
 
-    let intentoActual = 1; //input-row
-    let maximo_intento = 6;
-    let posicionActual = 0; //pos de los input dentro de input-row
-    let inputIntentoClickeado = null;
 
-
+    // Generar palabra, emoji y fecha
     function generarPalabra(palabras) {
         return palabras[Math.floor(Math.random() * palabras.length)];
     }
@@ -85,6 +100,32 @@
         return palabraGenerada;
     }
 
+    function generarFecha() {
+        let fechaActual = new Date();
+    
+        // Genera un año aleatorio entre 1000 y el año actual
+        let anioAleatorio = Math.floor(Math.random() * (fechaActual.getFullYear() - 1000 + 1)) + 1000;
+    
+        // Genera un mes aleatorio entre 1 y 12
+        let mesAleatorio = Math.floor(Math.random() * 12) + 1;
+    
+        // Genera un día aleatorio entre 1 y el último día del mes generado
+        let ultimoDiaMes = new Date(anioAleatorio, mesAleatorio, 0).getDate();
+        let diaAleatorio = Math.floor(Math.random() * ultimoDiaMes) + 1;
+    
+        // Formatea la fecha según "dd-mm-aaaa"
+        let diaFormateado = (diaAleatorio < 10) ? '0' + diaAleatorio : diaAleatorio;
+        let mesFormateado = (mesAleatorio < 10) ? '0' + mesAleatorio : mesAleatorio;
+    
+        // Combina los valores para formar la fecha aleatoria en formato "dd-mm-aaaa"
+        let fechaAleatoria = diaFormateado + '-' + mesFormateado + '-' + anioAleatorio;
+    
+        return fechaAleatoria;
+    }
+
+
+
+
     function generarInterfazJuego() {
         let inputMatrix = $("#input-matrix");
         inputMatrix.empty();
@@ -94,7 +135,7 @@
 
     //Matriz de inputs
     function generarInputMatriz(container) {
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= maximo_intento; i++) {
             let row = $("<div></div>");
             row.addClass("input-row intento" + i);
             container.append(row);
@@ -116,8 +157,19 @@
 
     //Obtengo el input clickeado del intento actual
     function obtenerInputClickeado() {
+       
         $(".intento" + intentoActual + " .input-box").on("click", function () {
             inputIntentoClickeado = $(this);
+            
+            if(modoJuego == modoFechas) {
+                //obtengo todas las clases, las agrego a un arreglo
+                //se agrega todo el contenido sin incluir el class, queda: ['input-box', 'pos1']..
+                let clases = inputIntentoClickeado.attr("class").split(" ");
+                if (clases.includes("pos2") || clases.includes("pos5")) {
+                    $(this).val('-');
+                }
+            }
+
             $(".intento" + intentoActual + " .input-box").css('border-color', '');
             $(this).css('border-color', 'lightblue');
         });
@@ -139,6 +191,15 @@
         }
         let valorSig = posicionActual+1;
         
+        if(modoJuego == modoFechas) {
+            //si es modo fechas, agrego el '-' y avanzo a la prox pos
+            if(posicionActual == 1 || posicionActual == 4) {
+                $(".intento" + intentoActual + " .input-box.pos"+valorSig).val('-');
+                inputIntentoClickeado = $(".intento" + intentoActual + " .input-box.pos" + valorSig);
+                valorSig = posicionActual+2;
+            }
+        }
+        
         inputIntentoClickeado = $(".intento" + intentoActual + " .input-box.pos" + valorSig);
         $(".intento" + intentoActual + " .input-box").css('border-color', '');
         inputIntentoClickeado.css('border-color', 'lightblue');
@@ -154,16 +215,33 @@
         if (inputIntentoClickeado) {
             let contenidoActual = inputIntentoClickeado.val();
             let posicionActual = inputIntentoClickeado.index();
+            console.log(posicionActual);
     
             if (contenidoActual !== '') {
                 inputIntentoClickeado.val('').removeClass('efecto-input-letra');;
             } else {
                 if (posicionActual > 0) {
-                    let inputAnterior = $(".intento" + intentoActual + " .input-box.pos" + (posicionActual - 1));
-                    inputIntentoClickeado = inputAnterior;
-                    inputAnterior.val("").removeClass('efecto-input-letra');;
+                    if(modoJuego == modoFechas) {
+                        if(posicionActual == 3 || posicionActual == 6) {
+                            console.log("ENTRO");
+                            let inputAnterior = $(".intento" + intentoActual + " .input-box.pos" + (posicionActual - 2));
+                            inputIntentoClickeado = inputAnterior;
+                            inputAnterior.val("").removeClass('efecto-input-letra');
+                        }
+                        else {
+                            let inputAnterior = $(".intento" + intentoActual + " .input-box.pos" + (posicionActual - 1));
+                            inputIntentoClickeado = inputAnterior;
+                            inputAnterior.val("").removeClass('efecto-input-letra');
+                        }
+                    }
+                    else {
+                        let inputAnterior = $(".intento" + intentoActual + " .input-box.pos" + (posicionActual - 1));
+                        inputIntentoClickeado = inputAnterior;
+                        inputAnterior.val("").removeClass('efecto-input-letra');
+                    }
                 }
             }
+        
     
             $(".intento" + intentoActual + " .input-box").css('border-color', '');
             inputIntentoClickeado.css('border-color', 'lightblue');
@@ -187,7 +265,7 @@
             $('.alert').css('display', 'none');
 
             let letras = {};  
-            //objeto letras con posiciones, cantidad, utilizados y disponibilidad
+            //objeto letras con posiciones, cantidad, utilizados y disponibilidad de la palabra secreta
             // console.log(palabraSecreta)
         for (let i = 0; i < palabraSecreta.length; i++) {
             let letra = palabraSecreta[i];
@@ -199,7 +277,7 @@
                 letras[letra].cantidad++;
             }
         }
-        // console.log(letras)
+        console.log(letras)
 
         //copiar el objeto letras antes de las iteraciones
         let letrasOriginal = JSON.parse(JSON.stringify(letras));
@@ -213,7 +291,7 @@
             if(modoJuego == modoEmojis) {
                 letraIngresada = obtenerValorEmojiLetra($(this).val());
             }
-        else if (modoJuego == modoPalabras) {
+        else {
             letraIngresada = $(this).val();
         }
         // console.log(letraIngresada)
@@ -252,7 +330,7 @@
                 if(modoJuego == modoEmojis) {
                     letraIngresada = obtenerValorEmojiLetra($(this).val());
                 }
-            else if (modoJuego == modoPalabras) {
+            else {
                 letraIngresada = $(this).val();
             }
                 let letraEnLetras = letras[letraIngresada];
@@ -309,10 +387,12 @@
                         
                     }
                 }                 
-                else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {            
+                else if (!$(this).hasClass('verde') && !$(this).hasClass('amarillo')) {
                     //si la letra no existe marcamos el teclado en gris
                     let letraBoton = letraIngresada.toLowerCase();
-                    $('.btn-teclado.' + letraBoton).addClass('gris');
+                    if(modoJuego != modoFechas) {
+                        $('.btn-teclado.' + letraBoton).addClass('gris');
+                    }
                     $(this).addClass('gris');
                 }
                 mostrarAnimacionLetrasInout(this);
@@ -326,20 +406,34 @@
                 palabraIngresada = contenedor.find('.input-box').toArray().map(input => obtenerValorEmojiLetra($(input).val())).join('');
                 palabraIngresadaEmoji =  contenedor.find('.input-box').toArray().map(input => $(input).val()).join(''); //guardo los emojis para mostrar en el modal al finalziar
                 palabraSecretaModoJuego = palabraIngresadaEmoji;
-            } else if (modoJuego == modoPalabras) {
+            } else {
                 palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
                 palabraSecretaModoJuego = palabraSecreta;
             }
             // console.log(palabraIngresadaEmoji, palabraSecreta);
             if (palabraIngresada === palabraSecreta) {
+                console.log("GANASTE");
                 totalPalabrasAcertadas++;
                 $('.modal_resultado .modal-title').text('¡Ganaste!');
                 mostrarAlerta('¡Ganaste! 🏆', 'success');
-                confetti();               
-                $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaModoJuego + '</p>');                if (totalPalabrasAcertadas > 0) {
-                    $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
-                }                
-                $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente palabra');
+                confetti();
+                if(modoJuego == modoFechas) {
+                    $('.modal_resultado .modal-body .palabra-era').html('<p>La fecha era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaModoJuego + '</p>');
+                } else {
+                    $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaModoJuego + '</p>');
+                }     
+                if (totalPalabrasAcertadas > 0) {
+                    if(modoJuego == modoFechas) {
+                        $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> fechas acertadas consecutivas</p>');
+                    } else {
+                        $('.modal_resultado .modal-body .total-conseguido').html('<p>Llevas un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
+                    }
+                }
+                if(modoJuego == modoFechas) {
+                    $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente fecha');
+                }  else {
+                    $('.modal_resultado .btn-primary').removeClass('restart').addClass('siguiente').html('Siguiente palabra');
+                }              
                 setTimeout(() => {
                     $('.modal_resultado').modal({
                         backdrop: false
@@ -356,13 +450,20 @@
                 mostrarAlerta('¡Perdiste!', 'danger')
                 $('.modal_resultado .modal-title').text("¡Perdiste!");
                 if(modoJuego == modoEmojis) {
-                    $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaEmoji + '</p>');
+                    $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal psecretaEmoji">' + palabraSecretaEmoji + '</p>');
                 }
                 else if (modoJuego == modoPalabras) {
                     $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');
                 }
+                else if (modoJuego == modoFechas) {
+                    $('.modal_resultado .modal-body .palabra-era').html('<p>La fecha era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');
+                }
                 if (totalPalabrasAcertadas >= 0) {
-                    $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
+                    if(modoJuego == modoFechas) {
+                        $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> fechas acertadas consecutivas</p>');
+                    }else {
+                        $('.modal_resultado .modal-body .total-conseguido').html('<p>Conseguiste un total de: <strong>' + totalPalabrasAcertadas + '</strong> palabras acertadas consecutivas</p>');
+                    }
                     $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
                 }
                 setTimeout(() => {
@@ -496,7 +597,7 @@
     $('.btn-meRindo').on('click', function () {
         $('.modal_resultado .modal-title').text("¡Te rendiste!");
         if(modoJuego == modoEmojis) {
-            $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecretaEmoji + '</p>');        
+            $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal psecretaEmoji">' + palabraSecretaEmoji + '</p>');        
         }
         else if (modoJuego == modoPalabras) {
             $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');              
