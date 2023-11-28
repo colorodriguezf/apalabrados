@@ -122,7 +122,6 @@ body {
   /* Juego */
     .contenedor-juego {
       display: none;
-      margin-top: 5vh !important;
       padding: 2%;
       min-height: 80vh;
       margin: auto;
@@ -135,12 +134,19 @@ body {
         gap: 16px;
     }
     .btn-group-controles button {
-        border-radius: 7px;
-        height: 34px;
-        padding: 0 16px;
-        font-size: 13px;
+        border-radius: 4px;
+        height: 30px;
+        padding: 0 14px;
+        font-size: 12px;
         transition: .2s;
         cursor: pointer;
+        color: #414a5e;  
+        transition: .2s linear;
+        background: #ebedf3;
+        border: none;
+    }
+    .btn-group-controles button:active, .btn-group-controles button:focus {
+        outline: none;
     }
 
     .btn-meRindo {
@@ -152,6 +158,16 @@ body {
     .btn-meRindo:hover {
         background-color: rgb(246, 224, 224);
         color:rgb(157, 114, 114);
+    }
+    #btnChangeRules:hover {
+        background-color: rgb(227, 239, 154);
+        color:rgb(43, 82, 74);
+        font-weight: bold;
+    }
+    #como_se_juega:hover {
+        background-color: rgb(141, 162, 225);
+        color:rgb(35, 45, 91);
+        font-weight: bold;
     }
 
     .tecla {
@@ -168,7 +184,7 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
+        margin-top: 30px;
         margin-bottom: 5vh;
        
     }
