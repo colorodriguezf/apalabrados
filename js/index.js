@@ -100,11 +100,12 @@ let modoFechas = 'fechas';
         return palabraGenerada;
     }
 
+    let anioMinimo = 1500
     function generarFecha() {
         let fechaActual = new Date();
     
-        // Genera un año aleatorio entre 1000 y el año actual
-        let anioAleatorio = Math.floor(Math.random() * (fechaActual.getFullYear() - 1000 + 1)) + 1000;
+        // Genera un año aleatorio entre anioMinimo y el año actual
+        let anioAleatorio = Math.floor(Math.random() * (fechaActual.getFullYear() - anioMinimo + 1)) + anioMinimo;
     
         // Genera un mes aleatorio entre 1 y 12
         let mesAleatorio = Math.floor(Math.random() * 12) + 1;
@@ -601,6 +602,9 @@ let modoFechas = 'fechas';
         }
         else if (modoJuego == modoPalabras) {
             $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');              
+        }
+        else if (modoJuego == modoFechas) {
+            $('.modal_resultado .modal-body .palabra-era').html('<p>La fecha era:</p><p class="font-weight-bold text-uppercase psecreta-modal">' + palabraSecreta + '</p>');              
         }
         $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
         $('.modal_resultado').modal('show');

@@ -17,13 +17,14 @@ body {
     min-height: 79vh;
 }
   .container-menu {
-    border: 1px solid #ddd;
-    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
     margin: auto;
   }
+
+  .menu {
+    padding: 20px;
+    text-align: center;
+}
   .menu h1 {
     text-align: center;
     margin-bottom: 30px;
@@ -33,15 +34,32 @@ body {
     color: #2c3e50;
     font-size: 1.5rem;
   }
-  .btn-dificultad {
-    width: 100%;
-    margin-bottom: 10px;
-    border: none;
+  ul {
+    list-style: none;
+    padding: 0;
+    }
+    ul li {
+        margin-top: 10px;
+    }
+.btn-dificultad {
+    width: 120px;
     padding: 8px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 0.9em;
     transition: background-color 0.3s ease;
-  }
+}
+
+.btn-dificultad:hover {
+    background-color: #2980b9;
+}
+
+.contenedor-modo-juego div p {
+    font-weight: bold;
+}
 
   /* Titulo MENU */
   .word-container {
@@ -426,7 +444,6 @@ body {
     gap: 2px;
 }
 
-
 #tecladoFechas .btn-teclado {
     display: flex;
     justify-content: center;
@@ -465,6 +482,12 @@ body {
     .word-container {
         width: 60%;
     }
+
+    .contenedor-modo-juego {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
 
     #tecladoPalabras {
         margin-top: 20px;
@@ -529,7 +552,7 @@ body {
        width: 65%;
     }
     .container-menu {
-        width: 35%;
+        width: 55%;
     }
     #teclado div button {
         /* padding:22px; */
