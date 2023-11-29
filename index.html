@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/styles.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <link rel="stylesheet" href="css/styles.css">    
     <link rel="icon" href="img/logoApalabrados.png">
     <title>Apalabrados</title>
 </head>
@@ -86,11 +87,185 @@
             </button>
         </div>
 
-        <div class="input-matrix" id="input-matrix"></div>
 
-        <div class="alert" role="alert">
-     
+        <div class="contenedor-matriz-teclado">
+
+            <div class="input-matrix" id="input-matrix"></div>
+    
+            <div class="alert" role="alert">
+        
+            </div>
+                <!-- Teclado para PALABRAS -->
+              <div id="tecladoPalabras">
+                <div>
+                    <button class="btn-teclado q" data-letra="q">q</button>
+                    <button class="btn-teclado w" data-letra="w">w</button>
+                    <button class="btn-teclado e" data-letra="e">e</button>
+                    <button class="btn-teclado r" data-letra="r">r</button>
+                    <button class="btn-teclado t" data-letra="t">t</button>
+                    <button class="btn-teclado y" data-letra="y">y</button>
+                    <button class="btn-teclado u" data-letra="u">u</button>
+                    <button class="btn-teclado i" data-letra="i">i</button>
+                    <button class="btn-teclado o" data-letra="o">o</button>
+                    <button class="btn-teclado p" data-letra="p">p</button>
+                </div>
+                <div>
+                    <button class="btn-teclado a" data-letra="a">a</button>
+                    <button class="btn-teclado s" data-letra="s">s</button>
+                    <button class="btn-teclado d" data-letra="d">d</button>
+                    <button class="btn-teclado f" data-letra="f">f</button>
+                    <button class="btn-teclado g" data-letra="g">g</button>
+                    <button class="btn-teclado h" data-letra="h">h</button>
+                    <button class="btn-teclado j" data-letra="j">j</button>
+                    <button class="btn-teclado k" data-letra="k">k</button>
+                    <button class="btn-teclado l" data-letra="l">l</button>
+                    <button class="btn-teclado ñ" data-letra="ñ">ñ</button>
+                </div>
+                <div>
+                    <button class="btnTeclado btn-enviar">ENVIAR</button>
+                    <button class="btn-teclado z" data-letra="z">z</button>
+                    <button class="btn-teclado x" data-letra="x">x</button>
+                    <button class="btn-teclado c" data-letra="c">c</button>
+                    <button class="btn-teclado v" data-letra="v">v</button>
+                    <button class="btn-teclado b" data-letra="b">b</button>
+                    <button class="btn-teclado n" data-letra="n">n</button>
+                    <button class="btn-teclado m" data-letra="m">m</button>
+                    <button class="btnTeclado btn-eliminar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                          <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                          <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                      </svg>
+                  </button>
+                </div>
+              </div>
+
+            <!-- Teclado para EMOJIS -->
+              <div id="tecladoEmojis">
+                <div>
+                  <button class="btn-teclado q" data-letra="q" data-emoji="🦊">🦊</button>
+                  <button class="btn-teclado w" data-letra="w" data-emoji="🐷">🐷</button>
+                  <button class="btn-teclado e" data-letra="e" data-emoji="🐶">🐶</button>
+                  <button class="btn-teclado r" data-letra="r" data-emoji="🐰">🐰</button>
+                  <button class="btn-teclado t" data-letra="t" data-emoji="😺">😺</button>
+              </div>
+              <div>
+                  <button class="btn-teclado a" data-letra="a" data-emoji="🐸">🐸</button>
+                  <button class="btn-teclado s" data-letra="s" data-emoji="🐯">🐯</button>
+                  <button class="btn-teclado d" data-letra="d" data-emoji="🐙">🐙</button>
+                  <button class="btn-teclado f" data-letra="f" data-emoji="🐨">🐨</button>
+                  <button class="btn-teclado g" data-letra="g" data-emoji="🐳">🐳</button>
+              </div>
+              <div>
+                  <button class="btnTeclado btn-enviar">ENVIAR</button>
+                  <button class="btn-teclado z" data-letra="z" data-emoji="🦄">🦄</button>
+                  <button class="btn-teclado x" data-letra="x" data-emoji="🐹">🐹</button>
+                  <button class="btn-teclado c" data-letra="c" data-emoji="🐮">🐮</button>
+                  <button class="btn-teclado v" data-letra="v" data-emoji="🐥">🐥</button>
+                  <button class="btn-teclado b" data-letra="b" data-emoji="🐼">🐼</button>
+
+                    <button class="btnTeclado btn-eliminar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                          <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                          <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                      </svg>
+                  </button>
+                </div>
+              </div>
+
+            <!-- Teclado para FECHAS -->
+              <div id="tecladoFechas">
+                  <div>
+                    <button class="btn-teclado 0" data-letra="0">0</button>
+                    <button class="btn-teclado 1" data-letra="1">1</button>
+                    <button class="btn-teclado 2" data-letra="2">2</button>
+                    <button class="btn-teclado 3" data-letra="3">3</button>
+                    <button class="btn-teclado 4" data-letra="4">4</button>
+                    <button class="btn-teclado 5" data-letra="5">5</button>
+                    <button class="btn-teclado 6" data-letra="6">6</button>
+                    <button class="btn-teclado 7" data-letra="7">7</button>
+                    <button class="btn-teclado 8" data-letra="8">8</button>
+                    <button class="btn-teclado 9" data-letra="9">9</button>
+                  </div>
+                  <div>
+                    <button class="btnTeclado btn-enviar" data-letra="z">ENVIAR</button>
+                    <button class="btnTeclado btn-eliminar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                          <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                          <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                        </svg>
+                    </button>
+                  </div>
+              </div>
         </div>
+
+
+        <!-- Modal COMO SE JUEGA -->
+        <div class="modal_info-wrapper">
+          <div class="mini_modal" id="modal_info">
+            <div class="tittle-comojugar">
+              <div class="top">Cómo jugar</div>
+              <div class="close_comoJugar">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>     
+              </div>
+            </div>
+              <div class="data">
+                  <div class="cont">
+                      <div class="info">                          
+                        <div class="text">
+                            Tenés que adivinar la palabra oculta en 6 intentos y el color de las letras cambia para mostrar lo cerca que estás.<br>
+                        </div>      
+                        <div class="text">
+                            Para comenzar el juego, simplemente ingresá cualquier palabra, por ejemplo:
+                        </div>      
+                        <div class="input-row-comoJugar">
+                            <div class="letter input-box gris">T</div>
+                            <div class="letter input-box verde">I</div>
+                            <div class="letter input-box gris">G</div>
+                            <div class="letter input-box amarillo">R</div>
+                            <div class="letter input-box amarillo">E</div>
+                        </div>      
+                        <div class="text text-tiles">
+                            <b class="grey_text">T</b> , <b class="grey_text">G</b> no están en la palabra.<br>
+                            <b class="yellow_text">E</b> , <b class="yellow_text">R</b> está en la palabra pero en el lugar equivocado.<br>
+                            <b class="green_text">I</b> está en la palabra y en el lugar correcto.<br>
+                        </div>
+                        <div class="text">
+                            Otro intento de encontrar letras coincidentes en la palabra objetivo.
+                        </div>      
+                        <div class="input-row-comoJugar">
+                            <div class="letter gris">B</div>
+                            <div class="letter gris">O</div>
+                            <div class="letter verde">V</div>
+                            <div class="letter verde">E</div>
+                            <div class="letter verde">R</div>
+                        </div>      
+                        <div class="text">
+                            ¡Casi!
+                        </div>      
+                        <div class="input-row-comoJugar">
+                            <div class="letter verde">R</div>
+                            <div class="letter verde">I</div>
+                            <div class="letter verde">V</div>
+                            <div class="letter verde">E</div>
+                            <div class="letter verde">R</div>
+                        </div>      
+                        <div class="text">
+                            <b>¡Ganaste! 🏆</b>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+      
+              <button type="button" class="close"></button>
+          </div>
+      </div>
+        
+
+
+
+
 
         <!-- Modal RESULTADO (ganar/perder/rendirse) -->
         <div class="modal modal_resultado" tabindex="-1" role="dialog" data-backdrop="static">
@@ -111,107 +286,6 @@
             </div>
           </div>
         
-          <!-- Teclado para PALABRAS -->
-        <div id="tecladoPalabras">
-            <div>
-                <button class="btn-teclado q" data-letra="q">q</button>
-                <button class="btn-teclado w" data-letra="w">w</button>
-                <button class="btn-teclado e" data-letra="e">e</button>
-                <button class="btn-teclado r" data-letra="r">r</button>
-                <button class="btn-teclado t" data-letra="t">t</button>
-                <button class="btn-teclado y" data-letra="y">y</button>
-                <button class="btn-teclado u" data-letra="u">u</button>
-                <button class="btn-teclado i" data-letra="i">i</button>
-                <button class="btn-teclado o" data-letra="o">o</button>
-                <button class="btn-teclado p" data-letra="p">p</button>
-            </div>
-            <div>
-                <button class="btn-teclado a" data-letra="a">a</button>
-                <button class="btn-teclado s" data-letra="s">s</button>
-                <button class="btn-teclado d" data-letra="d">d</button>
-                <button class="btn-teclado f" data-letra="f">f</button>
-                <button class="btn-teclado g" data-letra="g">g</button>
-                <button class="btn-teclado h" data-letra="h">h</button>
-                <button class="btn-teclado j" data-letra="j">j</button>
-                <button class="btn-teclado k" data-letra="k">k</button>
-                <button class="btn-teclado l" data-letra="l">l</button>
-                <button class="btn-teclado ñ" data-letra="ñ">ñ</button>
-            </div>
-            <div>
-                <button class="btnTeclado btn-enviar">ENVIAR</button>
-                <button class="btn-teclado z" data-letra="z">z</button>
-                <button class="btn-teclado x" data-letra="x">x</button>
-                <button class="btn-teclado c" data-letra="c">c</button>
-                <button class="btn-teclado v" data-letra="v">v</button>
-                <button class="btn-teclado b" data-letra="b">b</button>
-                <button class="btn-teclado n" data-letra="n">n</button>
-                <button class="btn-teclado m" data-letra="m">m</button>
-                <button class="btnTeclado btn-eliminar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
-                      <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
-                      <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
-                  </svg>
-              </button>
-            </div>
-        </div>
-
-        <!-- Teclado para EMOJIS -->
-        <div id="tecladoEmojis">
-          <div>
-            <button class="btn-teclado q" data-letra="q" data-emoji="🦊">🦊</button>
-            <button class="btn-teclado w" data-letra="w" data-emoji="🐷">🐷</button>
-            <button class="btn-teclado e" data-letra="e" data-emoji="🐶">🐶</button>
-            <button class="btn-teclado r" data-letra="r" data-emoji="🐰">🐰</button>
-            <button class="btn-teclado t" data-letra="t" data-emoji="😺">😺</button>
-        </div>
-        <div>
-            <button class="btn-teclado a" data-letra="a" data-emoji="🐸">🐸</button>
-            <button class="btn-teclado s" data-letra="s" data-emoji="🐯">🐯</button>
-            <button class="btn-teclado d" data-letra="d" data-emoji="🐙">🐙</button>
-            <button class="btn-teclado f" data-letra="f" data-emoji="🐨">🐨</button>
-            <button class="btn-teclado g" data-letra="g" data-emoji="🐳">🐳</button>
-        </div>
-        <div>
-            <button class="btnTeclado btn-enviar">ENVIAR</button>
-            <button class="btn-teclado z" data-letra="z" data-emoji="🦄">🦄</button>
-            <button class="btn-teclado x" data-letra="x" data-emoji="🐹">🐹</button>
-            <button class="btn-teclado c" data-letra="c" data-emoji="🐮">🐮</button>
-            <button class="btn-teclado v" data-letra="v" data-emoji="🐥">🐥</button>
-            <button class="btn-teclado b" data-letra="b" data-emoji="🐼">🐼</button>
-
-              <button class="btnTeclado btn-eliminar">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
-                    <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
-                    <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
-                </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Teclado para FECHAS -->
-        <div id="tecladoFechas">
-            <div>
-              <button class="btn-teclado 0" data-letra="0">0</button>
-              <button class="btn-teclado 1" data-letra="1">1</button>
-              <button class="btn-teclado 2" data-letra="2">2</button>
-              <button class="btn-teclado 3" data-letra="3">3</button>
-              <button class="btn-teclado 4" data-letra="4">4</button>
-              <button class="btn-teclado 5" data-letra="5">5</button>
-              <button class="btn-teclado 6" data-letra="6">6</button>
-              <button class="btn-teclado 7" data-letra="7">7</button>
-              <button class="btn-teclado 8" data-letra="8">8</button>
-              <button class="btn-teclado 9" data-letra="9">9</button>
-            </div>
-            <div>
-              <button class="btnTeclado btn-enviar" data-letra="z">ENVIAR</button>
-              <button class="btnTeclado btn-eliminar">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
-                    <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
-                    <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
-                  </svg>
-              </button>
-            </div>
-        </div>
     
     </div>
 
@@ -231,6 +305,9 @@
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

@@ -238,6 +238,10 @@ body {
         }
     }
 
+    
+
+
+
     /*Input verde/amarillo/gris */
     .verde, .amarillo, .gris {
         color:white !important;
@@ -272,7 +276,116 @@ body {
       }
 
 
+/* Modal Como se juega */
+.modal_info-wrapper {
+    display: none;
+    margin-top: 15px;
+}
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    min-height: 38px;
+    padding: 0 25px;
+    color: #2e3239;
+}
+.tittle-comojugar {
+    display:flex;
+    justify-content: center;
+    border-radius: 7px;
+    align-items: center;
+    background: rgb(246, 224, 224);
+}
+.close_comoJugar {
+    position: absolute;
+    right: 3vh;
+    display: flex;
+    justify-content: center;
+}
 
+.mini_modal .data {
+    padding: 10px 0 20px;
+}
+.mini_modal .info .text {
+    color: #5b6069;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.input-row-comoJugar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+b {
+    font-size: 1.1rem;
+}
+.letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 29px;
+    max-width: 50px;
+    height: 50.5px;
+    margin: 4px;
+    border: 2px solid rgb(224, 224, 224);
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 5px;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.mini_modal .info .text-tiles {
+    max-width: 450px;
+    line-height: 32px;
+    margin: 25px auto 10px;  /*arriba, der/izq, abajo */
+    padding: 10px 15px;
+    background: #edf0f5;
+    border-radius: 10px;
+    text-align: left;
+}
+.cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grey_text {
+    color: #fff!important;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #a4aec4;
+}
+.yellow_text {
+    color: #fff!important;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #f3c237;
+}
+.green_text {
+    color: #fff!important;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #79b851;
+}
+
+
+
+
+
+
+
+
+
+    /* ------------------------------ */
     /*Alerts  */
     .alert {
         display: none;

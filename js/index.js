@@ -616,6 +616,17 @@ let modoFechas = 'fechas';
     
   
 
+
+
+    // Modales COMO SE JUEGA 
+    $('#como_se_juega').on('click', function(){
+        $('.contenedor-matriz-teclado').toggle();
+        $('.modal_info-wrapper').toggle();
+    }); 
     
+    $('.close_comoJugar').on('click', function(){
+        $('.modal_info-wrapper').toggle();
+        $('.contenedor-matriz-teclado').toggle();
+    });
     
   
