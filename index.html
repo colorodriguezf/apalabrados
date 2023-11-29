@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
     <link rel="stylesheet" href="css/styles.css">    
     <link rel="icon" href="img/logoApalabrados.png">
@@ -200,94 +199,236 @@
 
 
         <!-- Modal COMO SE JUEGA -->
-        <div class="modal_info-wrapper">
-          <div class="mini_modal" id="modal_info">
-            <div class="tittle-comojugar">
-              <div class="top">Cómo jugar</div>
-              <div class="close_comoJugar">
-                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                </svg>     
+          <!-- PALABRAS -->
+          <div class="modal_info-wrapper modal_como_jugar_palabras">
+            <div class="mini_modal" id="modal_info">
+              <div class="tittle-comojugar">
+                <div class="top">Cómo jugar</div>
+                <div class="close_comoJugar">
+                  <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                  </svg>     
+                </div>
               </div>
+                <div class="data">
+                    <div class="cont">
+                        <div class="info">                          
+                          <div class="text">
+                              Tenés que adivinar la palabra oculta en 6 intentos y el color de las letras cambia para mostrar lo cerca que estás.<br>
+                          </div>      
+                          <div class="text">
+                              Para comenzar el juego, simplemente ingresá cualquier palabra, por ejemplo:
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter input-box gris">T</div>
+                              <div class="letter input-box verde">I</div>
+                              <div class="letter input-box gris">G</div>
+                              <div class="letter input-box amarillo">R</div>
+                              <div class="letter input-box amarillo">E</div>
+                          </div>      
+                          <div class="text text-tiles">
+                              <b class="grey_text">T</b> , <b class="grey_text">G</b> no están en la palabra.<br>
+                              <b class="yellow_text">E</b> , <b class="yellow_text">R</b> está en la palabra pero en el lugar equivocado.<br>
+                              <b class="green_text">I</b> está en la palabra y en el lugar correcto.<br>
+                          </div>
+                          <div class="text">
+                              Otro intento de encontrar letras coincidentes en la palabra objetivo.
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter gris">B</div>
+                              <div class="letter gris">O</div>
+                              <div class="letter verde">V</div>
+                              <div class="letter verde">E</div>
+                              <div class="letter verde">R</div>
+                          </div>      
+                          <div class="text">
+                              ¡Casi!
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter verde">R</div>
+                              <div class="letter verde">I</div>
+                              <div class="letter verde">V</div>
+                              <div class="letter verde">E</div>
+                              <div class="letter verde">R</div>
+                          </div>      
+                          <div class="text">
+                              <b>¡Ganaste! 🏆</b>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <button type="button" class="close"></button>
             </div>
-              <div class="data">
-                  <div class="cont">
-                      <div class="info">                          
-                        <div class="text">
-                            Tenés que adivinar la palabra oculta en 6 intentos y el color de las letras cambia para mostrar lo cerca que estás.<br>
-                        </div>      
-                        <div class="text">
-                            Para comenzar el juego, simplemente ingresá cualquier palabra, por ejemplo:
-                        </div>      
-                        <div class="input-row-comoJugar">
-                            <div class="letter input-box gris">T</div>
-                            <div class="letter input-box verde">I</div>
-                            <div class="letter input-box gris">G</div>
-                            <div class="letter input-box amarillo">R</div>
-                            <div class="letter input-box amarillo">E</div>
-                        </div>      
-                        <div class="text text-tiles">
-                            <b class="grey_text">T</b> , <b class="grey_text">G</b> no están en la palabra.<br>
-                            <b class="yellow_text">E</b> , <b class="yellow_text">R</b> está en la palabra pero en el lugar equivocado.<br>
-                            <b class="green_text">I</b> está en la palabra y en el lugar correcto.<br>
-                        </div>
-                        <div class="text">
-                            Otro intento de encontrar letras coincidentes en la palabra objetivo.
-                        </div>      
-                        <div class="input-row-comoJugar">
-                            <div class="letter gris">B</div>
-                            <div class="letter gris">O</div>
-                            <div class="letter verde">V</div>
-                            <div class="letter verde">E</div>
-                            <div class="letter verde">R</div>
-                        </div>      
-                        <div class="text">
-                            ¡Casi!
-                        </div>      
-                        <div class="input-row-comoJugar">
-                            <div class="letter verde">R</div>
-                            <div class="letter verde">I</div>
-                            <div class="letter verde">V</div>
-                            <div class="letter verde">E</div>
-                            <div class="letter verde">R</div>
-                        </div>      
-                        <div class="text">
-                            <b>¡Ganaste! 🏆</b>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-      
-              <button type="button" class="close"></button>
           </div>
+
+          <!-- Modal EMOJIS -->
+          <div class="modal_info-wrapper modal_como_jugar_emojis">
+            <div class="mini_modal" id="modal_info">
+              <div class="tittle-comojugar">
+                <div class="top">Cómo jugar</div>
+                <div class="close_comoJugar">
+                  <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                  </svg>     
+                </div>
+              </div>
+                <div class="data">
+                    <div class="cont">
+                        <div class="info">                          
+                          <div class="text">
+                              Tenés que adivinar la palabra emoji oculta en 6 intentos y el color de las letras cambia para mostrar lo cerca que estás.<br>
+                          </div>      
+                          <div class="text">
+                              Para comenzar el juego, simplemente ingresá cualquier palabra emoji, por ejemplo:
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter input-box gris">🦊</div>
+                              <div class="letter input-box verde">🐥</div>
+                              <div class="letter input-box gris">🦄</div>
+                              <div class="letter input-box amarillo">🐸</div>
+                              <div class="letter input-box amarillo">🐷</div>
+                          </div>      
+                          <div class="text text-tiles">
+                              <b class="grey_text">🦊</b> , <b class="grey_text">🦄</b> no están en la palabra.<br>
+                              <b class="yellow_text">🐸</b> , <b class="yellow_text">🐷</b> está en la palabra pero en el lugar equivocado.<br>
+                              <b class="green_text">🐥</b> está en la palabra y en el lugar correcto.<br>
+                          </div>
+                          <div class="text">
+                              Otro intento de encontrar letras coincidentes en la palabra objetivo.
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter verde">🐸</div>
+                              <div class="letter verde">🐥</div>
+                              <div class="letter amarillo">🐷</div>
+                              <div class="letter gris">🐙</div>
+                              <div class="letter verde">🐨</div>
+                          </div>      
+                          <div class="text">
+                              ¡Casi!
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter verde">🐸</div>
+                              <div class="letter verde">🐥</div>
+                              <div class="letter verde">🐶</div>
+                              <div class="letter verde">🐷</div>
+                              <div class="letter verde">🐨</div>
+                          </div>      
+                          <div class="text">
+                              <b>¡Ganaste! 🏆</b>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <button type="button" class="close"></button>
+            </div>
+          </div>
+          <!-- Modal FECHAS -->
+
+          <div class="modal_info-wrapper modal_como_jugar_fechas">
+            <div class="mini_modal" id="modal_info">
+              <div class="tittle-comojugar">
+                <div class="top">Cómo jugar</div>
+                <div class="close_comoJugar">
+                  <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                  </svg>     
+                </div>
+              </div>
+                <div class="data">
+                    <div class="cont">
+                        <div class="info">                          
+                          <div class="text">
+                              Tenés que adivinar la fecha oculta en 8 intentos y el color de las letras cambia para mostrar lo cerca que estás.<br>
+                          </div> 
+                          <div class="text">
+                           La fecha esta en formato: <span>DD/MM/AAAA</span>.<br>
+                        </div>      
+                          <div class="text">
+                              Para comenzar el juego, simplemente ingresá cualquier fecha, por ejemplo:
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter input-box gris">2</div>
+                              <div class="letter input-box verde">9</div>
+                              <div class="letter input-box verde">-</div>
+                              <div class="letter input-box verde">0</div>
+                              <div class="letter input-box amarillo">9</div>
+                              <div class="letter input-box verde">-</div>
+                              <div class="letter input-box verde">1</div>
+                              <div class="letter input-box amarillo">7</div>
+                              <div class="letter input-box gris">8</div>
+                              <div class="letter input-box amarillo">0</div>
+                          </div>      
+                          <div class="text text-tiles">
+                              <b class="grey_text">2</b> , <b class="grey_text">8</b> no están en la fecha.<br>
+                              <b class="yellow_text">0</b> ,<b class="yellow_text">9</b> , <b class="yellow_text">7</b> está en la palabra pero en el lugar equivocado.<br>
+                              <b class="green_text">0</b> , <b class="green_text">1</b> , <b class="green_text">9</b> está en la palabra y en el lugar correcto.<br>
+                          </div>
+                          <div class="text">
+                              Otro intento de encontrar letras coincidentes en la palabra objetivo.
+                          </div>      
+                          <div class="input-row-comoJugar">
+                            <div class="letter input-box verde">0</div>
+                            <div class="letter input-box verde">9</div>
+                            <div class="letter input-box verde">-</div>
+                            <div class="letter input-box verde">0</div>
+                            <div class="letter input-box verde">5</div>
+                            <div class="letter input-box verde">-</div>
+                            <div class="letter input-box verde">1</div>
+                            <div class="letter input-box gris">6</div>
+                            <div class="letter input-box amarillo">7</div>
+                            <div class="letter input-box amarillo">9</div>
+                          </div>      
+                          <div class="text">
+                              ¡Casi!
+                          </div>      
+                          <div class="input-row-comoJugar">
+                              <div class="letter verde">0</div>
+                              <div class="letter verde">9</div>
+                              <div class="letter verde">-</div>
+                              <div class="letter verde">0</div>
+                              <div class="letter verde">5</div>
+                              <div class="letter verde">-</div>
+                              <div class="letter verde">1</div>
+                              <div class="letter verde">9</div>
+                              <div class="letter verde">9</div>
+                              <div class="letter verde">7</div>                              
+                          </div>      
+                          <div class="text">
+                              <b>¡Ganaste! 🏆</b>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <button type="button" class="close"></button>
+            </div>
+          </div>
+          <!-- ---------------------------->
+
+
+
+
+        <!-- Modal RESULTADO (ganar/perder/rendirse) -->        
       </div>
-        
-
-
-
-
-
-        <!-- Modal RESULTADO (ganar/perder/rendirse) -->
-        <div class="modal modal_resultado" tabindex="-1" role="dialog" data-backdrop="static">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title"></h5>
-                </div>
-                <div class="modal-body">
-                  <p class="palabra-era"></p>
-                  <p class="total-conseguido"></p>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"></button>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary volver_menu" data-dismiss="modal">Volver al menu</button>
-                </div>
+      <div class="modal modal_resultado" tabindex="-1" role="dialog" data-backdrop="static">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"></h5>
+              </div>
+              <div class="modal-body">
+                <p class="palabra-era"></p>
+                <p class="total-conseguido"></p>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"></button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary volver_menu" data-dismiss="modal">Volver al menu</button>
               </div>
             </div>
           </div>
-        
-    
-    </div>
+        </div>
 
 
 
@@ -306,7 +447,6 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

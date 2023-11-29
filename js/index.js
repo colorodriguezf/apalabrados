@@ -530,6 +530,8 @@ let modoFechas = 'fechas';
     }
 
     $(document).on('click', '.restart', function () {
+        $('.modal_como_jugar_'+modoJuego).css('display','none');
+        $('.contenedor-matriz-teclado').css('display','block');
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         totalPalabrasAcertadas = 0;
@@ -546,6 +548,8 @@ let modoFechas = 'fechas';
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
         $('.contenedor-juego').css('display', 'none');
         $('.center-container').css('display', 'flex');
+        $('.modal_como_jugar_'+modoJuego).css('display','none');
+        $('.contenedor-matriz-teclado').css('display','block');
         totalPalabrasAcertadas = 0;
     });
 
@@ -621,12 +625,12 @@ let modoFechas = 'fechas';
     // Modales COMO SE JUEGA 
     $('#como_se_juega').on('click', function(){
         $('.contenedor-matriz-teclado').toggle();
-        $('.modal_info-wrapper').toggle();
+        $('.modal_como_jugar_'+modoJuego).toggle();
     }); 
     
     $('.close_comoJugar').on('click', function(){
-        $('.modal_info-wrapper').toggle();
         $('.contenedor-matriz-teclado').toggle();
+        $('.modal_como_jugar_'+modoJuego).toggle();
     });
     
   
