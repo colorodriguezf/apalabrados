@@ -529,10 +529,10 @@ b {
 
 #tecladoEmojis .btn-teclado {
     display: flex;
-    /* max-width: 50px; */
+    max-width: 50px;
     margin: 0 1px;
-    padding: 8px;
-    font-size: 30px;
+    padding: 4px;
+    font-size: 25px;
     background-color: #dce1ed;
     color: #414a5e;
     font-weight: 700;
@@ -546,7 +546,7 @@ b {
 
 #tecladoEmojis .btnTeclado {
     flex: 2;
-    width: auto;
+    max-width: 60px;
     background-color: #dce1ed;
     font-size: 12px;
     font-weight: 700;
@@ -671,6 +671,22 @@ b {
         width: 63%;
         margin: auto;
     }
+    #tecladoEmojis .btn-teclado {
+        display: flex;
+        max-width: 70px;
+        margin: 0 1px;
+        padding: 10px;
+        font-size: 20px;
+    }
+    
+    #tecladoEmojis .btnTeclado {
+        flex: 2;
+        max-width: 80px;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 4px;
+    }
+
     #tecladoEmojis .btn-teclado:hover,
     #tecladoEmojis .btnTeclado:hover {
     background-color: #a4aec4;
@@ -699,7 +715,7 @@ b {
         flex-wrap: nowrap;
     }
     .btnTeclado {
-        min-width: 120px !important;
+        min-width: 100px !important;
         font-size: 16px !important;
     }
     .alert-danger {
