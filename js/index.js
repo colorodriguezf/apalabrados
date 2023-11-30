@@ -623,14 +623,42 @@ let modoFechas = 'fechas';
 
 
     // Modales COMO SE JUEGA 
-    $('#como_se_juega').on('click', function(){
-        $('.contenedor-matriz-teclado').toggle();
-        $('.modal_como_jugar_'+modoJuego).toggle();
-    }); 
     
-    $('.close_comoJugar').on('click', function(){
-        $('.contenedor-matriz-teclado').toggle();
-        $('.modal_como_jugar_'+modoJuego).toggle();
+    $('#como_se_juega').on('click', function(){
+        toggleModal('modal_como_jugar_' + modoJuego);
     });
     
-  
+    $('.close_comoJugar').on('click', function(){
+        // cierro todos los modales
+        $('.modal_info-wrapper').css('display', 'none');
+        // fuerzo a que se cierren
+        modalAbierto = '';
+        // muestro juego
+        $('.contenedor-matriz-teclado').toggle();
+    });
+    
+    $('#btnConfiguracion').on('click', function(){
+        toggleModal('modal_configuracion_' + modoJuego);
+    });
+    
+    let modalAbierto = '';
+    function toggleModal(nuevoModal) {        
+        // cierro el modal abierto y muestro juego
+        if (modalAbierto !== '') {
+            console.log("ENTRO 1 if")
+            $('.contenedor-matriz-teclado').toggle();
+            $('.' + modalAbierto).toggle();
+        }
+        //si el modal a abrir es distinto al abierto
+        // saco el juego y muestro el nuevo
+        if (modalAbierto !== nuevoModal) {
+            console.log("ENTRO 2do if")
+            $('.contenedor-matriz-teclado').css('display', 'none');
+            $('.' + nuevoModal).css('display', 'block');
+            modalAbierto = nuevoModal;
+            // guardo el nuevo en abierto
+        } else {
+            //  Si el nuevo modal es el mismo que el actualmente abierto, se cierra
+            modalAbierto = '';
+        }
+    }
