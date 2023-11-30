@@ -413,7 +413,7 @@ let modoFechas = 'fechas';
             }
             // console.log(palabraIngresadaEmoji, palabraSecreta);
             if (palabraIngresada === palabraSecreta) {
-                console.log("GANASTE");
+                navigator.vibrate([200, 100, 200, 100, 200]); 
                 totalPalabrasAcertadas++;
                 $('.modal_resultado .modal-title').text('¡Ganaste!');
                 mostrarAlerta('¡Ganaste! 🏆', 'success');
@@ -521,7 +521,8 @@ let modoFechas = 'fechas';
         alerta.text(mensaje);
         alerta.removeClass('alert-danger alert-success').addClass(`alert-${tipo}`);
         alerta.css('display', 'block');
-        navigator.vibrate(500);     
+        navigator.vibrate(500); 
+        navigator.vibrate([200, 100, 200, 100, 200]); 
     }
 
     async function confetti() {
