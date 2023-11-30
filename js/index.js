@@ -21,6 +21,7 @@ let modoFechas = 'fechas';
         intentoActual = 1;
         posicionActual = 0;
         palabraSecretaEmoji = "";
+        inputIntentoClickeado = null; //cada vez que se inicia (por siguiente o reinicio), pongo en null para que no tome el valor anterior (ponias reiniciar y estabas en la pos 2, y en vez de empezar en la 0 empezabas en la 3)
 
         if(modo == modoPalabras) {
             cantidadLetras = ndificultad;
@@ -69,16 +70,12 @@ let modoFechas = 'fechas';
             $('#tecladoFechas').css('display', 'block');
 
             palabraSecreta = generarFecha();
-            console.log(palabraSecreta);
+            // console.log(palabraSecreta);
         }
-
-
-
 
         $('.center-container').css('display', 'none'); //saco menu
         $('.contenedor-juego').css('display', 'block');//muestro juego
-        generarInterfazJuego();
-        
+        generarInterfazJuego();        
        
         // console.log(palabraSecreta);
     }
@@ -180,12 +177,14 @@ let modoFechas = 'fechas';
     $(".btn-teclado").on("click", function () {
         let valorTecla = "";
         valorTecla = $(this).text();
-        // console.log(valorTecla);
 
+        // console.log(posicionActual);
         if (inputIntentoClickeado) {
+            console.log("SE CLICKEO")
             inputIntentoClickeado.val(valorTecla).addClass('efecto-input-letra');
             posicionActual = inputIntentoClickeado.index();
         } else {
+            console.log("ENTROOO");
             let primerInput = $(".intento" + intentoActual + " .input-box.pos0");
             primerInput.val(valorTecla).addClass('efecto-input-letra');
             posicionActual = 0;
@@ -200,7 +199,9 @@ let modoFechas = 'fechas';
                 valorSig = posicionActual+2;
             }
         }
-        
+
+        // Restablecer posicionActual a 0 antes de asignar el nuevo inputIntentoClickeado
+        posicionActual = 0;
         inputIntentoClickeado = $(".intento" + intentoActual + " .input-box.pos" + valorSig);
         $(".intento" + intentoActual + " .input-box").css('border-color', '');
         inputIntentoClickeado.css('border-color', 'lightblue');
@@ -216,7 +217,6 @@ let modoFechas = 'fechas';
         if (inputIntentoClickeado) {
             let contenidoActual = inputIntentoClickeado.val();
             let posicionActual = inputIntentoClickeado.index();
-            console.log(posicionActual);
     
             if (contenidoActual !== '') {
                 inputIntentoClickeado.val('').removeClass('efecto-input-letra');;
@@ -224,7 +224,6 @@ let modoFechas = 'fechas';
                 if (posicionActual > 0) {
                     if(modoJuego == modoFechas) {
                         if(posicionActual == 3 || posicionActual == 6) {
-                            console.log("ENTRO");
                             let inputAnterior = $(".intento" + intentoActual + " .input-box.pos" + (posicionActual - 2));
                             inputIntentoClickeado = inputAnterior;
                             inputAnterior.val("").removeClass('efecto-input-letra');
@@ -278,7 +277,7 @@ let modoFechas = 'fechas';
                 letras[letra].cantidad++;
             }
         }
-        console.log(letras)
+        // console.log(letras)
 
         //copiar el objeto letras antes de las iteraciones
         let letrasOriginal = JSON.parse(JSON.stringify(letras));
