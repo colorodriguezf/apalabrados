@@ -521,6 +521,7 @@ let modoFechas = 'fechas';
         alerta.text(mensaje);
         alerta.removeClass('alert-danger alert-success').addClass(`alert-${tipo}`);
         alerta.css('display', 'block');
+        navigator.vibrate(500);     
     }
 
     async function confetti() {
