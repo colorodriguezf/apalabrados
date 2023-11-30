@@ -17,6 +17,7 @@ let modoEmojis = 'emojis';
 let modoFechas = 'fechas';
 
     function iniciarJuego(modo, ndificultad) {
+        $('.alert').css('display', 'none');
         modoJuego= modo;
         intentoActual = 1;
         posicionActual = 0;
@@ -177,14 +178,12 @@ let modoFechas = 'fechas';
     $(".btn-teclado").on("click", function () {
         let valorTecla = "";
         valorTecla = $(this).text();
-
+        $('.alert').css('display', 'none');
         // console.log(posicionActual);
         if (inputIntentoClickeado) {
-            console.log("SE CLICKEO")
             inputIntentoClickeado.val(valorTecla).addClass('efecto-input-letra');
             posicionActual = inputIntentoClickeado.index();
         } else {
-            console.log("ENTROOO");
             let primerInput = $(".intento" + intentoActual + " .input-box.pos0");
             primerInput.val(valorTecla).addClass('efecto-input-letra');
             posicionActual = 0;
@@ -520,8 +519,7 @@ let modoFechas = 'fechas';
         alerta.text(mensaje);
         alerta.removeClass('alert-danger alert-success').addClass(`alert-${tipo}`);
         alerta.css('display', 'block');
-        navigator.vibrate(500); 
-        navigator.vibrate([200, 100, 200, 100, 200]); 
+        // navigator.vibrate(500); 
     }
 
     async function confetti() {
