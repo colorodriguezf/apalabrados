@@ -411,9 +411,8 @@ let modoFechas = 'fechas';
                 palabraIngresada = contenedor.find('.input-box').toArray().map(input => $(input).val()).join('');
                 palabraSecretaModoJuego = palabraSecreta;
             }
-            // console.log(palabraIngresadaEmoji, palabraSecreta);
             if (palabraIngresada === palabraSecreta) {
-                navigator.vibrate([200, 100, 200, 100, 200]); 
+                navigator.vibrate([100, 30, 100, 30, 100]);
                 totalPalabrasAcertadas++;
                 $('.modal_resultado .modal-title').text('¡Ganaste!');
                 mostrarAlerta('¡Ganaste! 🏆', 'success');
@@ -448,6 +447,7 @@ let modoFechas = 'fechas';
                 inputIntentoClickeado = siguienteFila;
                 obtenerInputClickeado();
             } else if (intentoActual == maximo_intento) {
+                navigator.vibrate([500, 100, 500]);
                 mostrarAlerta('¡Perdiste!', 'danger')
                 $('.modal_resultado .modal-title').text("¡Perdiste!");
                 if(modoJuego == modoEmojis) {
@@ -602,6 +602,7 @@ let modoFechas = 'fechas';
     
 
     $('.btn-meRindo').on('click', function () {
+        navigator.vibrate([200, 100, 200, 100, 200, 100, 200]);
         $('.modal_resultado .modal-title').text("¡Te rendiste!");
         if(modoJuego == modoEmojis) {
             $('.modal_resultado .modal-body .palabra-era').html('<p>La palabra era:</p><p class="font-weight-bold text-uppercase psecreta-modal psecretaEmoji">' + palabraSecretaEmoji + '</p>');        
