@@ -403,8 +403,8 @@
 
 
           <!-- Modal CONFIGURACION -->
-
-          <div class="modal_info-wrapper modal_configuracion modal_configuracion_palabras inactivo ">
+          <!-- Modo PALABRAS y EMOJIS -->
+          <div class="modal_info-wrapper modal_configuracion modal_configuracion_palabras modal_configuracion_emojis inactivo ">
               <div class="tittle-comojugar">
                 <div class="top">Ajustes</div>
                 <div class="close_comoJugar">
@@ -417,12 +417,44 @@
                 <div class="cont">
                     <div class="info">                          
                       <div class="text">
-                          Tenés que adivinar la fecha oculta en 8 intentos y el color de las letras cambia para mostrar lo cerca que estás.<br>
+                        <strong> Número de Letras  </strong>                    
                       </div> 
+                      <div class="nDificultad-config">
+                        <div><input type="number" value="4" readonly> </div>
+                        <div><input type="number" value="5" readonly> </div>
+                        <div><input type="number" value="6" readonly> </div>
+                        <div><input type="number" value="7" readonly> </div>
+                      </div>
                     </div>
                   </div>
-              </div>               
+                </div>               
+                <div class="">
+                  <p>Otros juegos:</p>
+                  <div class="config-otros-juegos">
+                    <img class="img1" title="Emojis" src="https://media.ambito.com/p/09e9bf683524d79af609f5431be9cdb6/adjuntos/239/imagenes/039/860/0039860472/375x211/smart/emojis-mas-usados-en-el-mundojpgwebp.png" alt="">
+                    <img class="img2" title="Fechas" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8xdJ2WIevJIiMgxBoiHMYRJx4afR8WwA1Q&usqp=CAU" alt="">
+                  </div>
+                </div>
           </div>
+
+          <!-- Modo FECHAS -->
+          <div class="modal_info-wrapper modal_configuracion modal_configuracion_fechas inactivo ">
+            <div class="tittle-comojugar">
+              <div class="top">Ajustes</div>
+              <div class="close_comoJugar">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>     
+              </div>
+            </div>  
+              <div class="">
+                <p>Otros juegos:</p>
+                <div class="config-otros-juegos">
+                  <img class="img1">
+                  <img class="img2">
+                </div>
+              </div>
+        </div>
 
 
 

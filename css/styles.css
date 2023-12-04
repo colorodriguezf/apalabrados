@@ -282,6 +282,27 @@ body {
     display: none;
     margin-top: 15px;
 }
+.nDificultad-config {
+    display: flex;
+}
+.text {
+    text-align: center;
+}
+.nDificultad-config input {
+    width: 40.5px;
+    max-width: 52.5px;
+    height: 40.5px;
+    max-height: 62.5px;
+    border: 2px solid rgb(224, 224, 224);
+    font-size: 1.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 4px;
+    text-align: center;
+}
+.nDificultad-config input:focus {
+    outline: none;
+}
 .top {
     display: flex;
     justify-content: center;
@@ -299,6 +320,7 @@ body {
     border-radius: 7px;
     align-items: center;
     background: rgb(246, 224, 224);
+    margin-bottom: 10px;
 }
 .close_comoJugar {
     position: absolute;
@@ -383,6 +405,26 @@ b {
     background: #79b851;
 }
 
+.config-otros-juegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.config-otros-juegos img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    height: 130px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+.config-otros-juegos img:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
 
 
 
@@ -483,7 +525,7 @@ b {
     text-transform: uppercase;
     flex: 1;
     max-width: 45px;
-    margin: 0 1px;
+    margin: 0 2px;
     padding: 6px;
     font-size: 14px;
     background-color: #dce1ed;
@@ -633,14 +675,15 @@ b {
     }
     
     #tecladoPalabras div button {
-        /* padding:22px; */
         font-size: 20px;
-        min-width: 60px;
-        height: 60px;
+        height: 54px;
         text-align: center;
-        margin:5px 2px 5px 2px;
         align-items: center; 
         flex-wrap: nowrap;
+    }
+
+    #tecladoPalabras > div {
+        gap: 1px;
     }
 
     .input-matrix {
@@ -665,13 +708,19 @@ b {
         margin: 5px;
     }
     .btnTeclado {
-        max-width: 100px !important;
+        max-width: 80px !important;
     }
 
     .alert-danger {
         width: 63%;
         margin: auto;
     }
+
+    .config-otros-juegos {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 10px;
+    }
+
     #tecladoEmojis .btn-teclado {
         display: flex;
         max-width: 70px;
@@ -693,8 +742,19 @@ b {
     background-color: #a4aec4;
     }
 
+    .btn-group-controles {
+        margin-bottom: 15px;
+    }
+
     #tecladoFechas {
         width:80%;
+    }
+    .modal_info-wrapper, .modal_configuracion_palabras {
+        width: 80%;
+        margin: auto;
+    }
+    .close_comoJugar {
+        right: 18vh;
     }
 }
 
@@ -708,16 +768,10 @@ b {
     #teclado div button {
         /* padding:22px; */
         font-size: 20px;
-        min-width: 80px;
-        height: 60px;
+        min-width: 70px;
         text-align: center;
-        margin:5px 2px 5px 2px;
         align-items: center; 
         flex-wrap: nowrap;
-    }
-    .btnTeclado {
-        min-width: 100px !important;
-        font-size: 16px !important;
     }
     .alert-danger {
         width: 30%;
@@ -726,6 +780,14 @@ b {
 
     #tecladoFechas {
         width: 40%;
+    }
+
+    .modal_info-wrapper, .modal_configuracion_palabras {
+        width: 37%;
+        margin: auto;
+    }
+    .close_comoJugar {
+        right: 66vh;
     }
 }
 

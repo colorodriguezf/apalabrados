@@ -11,10 +11,14 @@ let intentoActual = 1; //input-row
 let posicionActual = 0; //pos de los input dentro de input-row
 let inputIntentoClickeado = null;
 
+
 // Modo de juego
 let modoPalabras = 'palabras';
 let modoEmojis = 'emojis';
 let modoFechas = 'fechas';
+
+//los uso para el modal config
+let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
 
     function iniciarJuego(modo, ndificultad) {
         $('.alert').css('display', 'none');
@@ -635,24 +639,52 @@ let modoFechas = 'fechas';
         modalAbierto = '';
         // muestro juego
         $('.contenedor-matriz-teclado').toggle();
+
+        if (nLetrasModal > 0) {
+            iniciarJuego(modoJuego, nLetrasModal);            
+        }    
+        nLetrasModal = 0;
     });
     
     $('#btnConfiguracion').on('click', function(){
         toggleModal('modal_configuracion_' + modoJuego);
+        if (nLetrasModal > 0) {
+            iniciarJuego(modoJuego, nLetrasModal);            
+        }    
+        nLetrasModal = 0;
+        let fotoPalabras = 'https://www.semanarioextra.com.ar/wp-content/uploads/2020/12/5f520b7a46372.jpg';
+        let fotoEmojis = 'https://media.ambito.com/p/09e9bf683524d79af609f5431be9cdb6/adjuntos/239/imagenes/039/860/0039860472/375x211/smart/emojis-mas-usados-en-el-mundojpgwebp.png';
+        let fotoFechas ='https://tusbuenasnoticias-s3.cdn.net.ar/s3i233/2023/08/tusbuenasnoticias/images/16/04/160450_975e74db3c238d0a44701d62bfc511ed543055444f211e4239a4addf16d8357e/xs.webp';
+        if(modoJuego == modoPalabras) {
+            $('.img1').attr('src', fotoEmojis);
+            $('.img2').attr('title', 'Emojis');
+            $('.img2').attr('src', fotoFechas);
+            $('.img2').attr('title', 'Fechas');
+        }
+        else if (modoJuego === modoEmojis) {
+            $('.img1').attr('src', fotoPalabras);
+            $('.img1').attr('title', 'Palabras');
+            $('.img2').attr('src', fotoFechas);
+            $('.img2').attr('title', 'Fechas');
+        } else if (modoJuego === modoFechas) {
+            $('.img1').attr('src', fotoPalabras);
+            $('.img1').attr('title', 'Palabras');
+            $('.img2').attr('src', fotoEmojis);
+            $('.img2').attr('title', 'Emojis');
+        }
     });
     
     let modalAbierto = '';
+    let nLetrasModal = 0;
     function toggleModal(nuevoModal) {        
         // cierro el modal abierto y muestro juego
         if (modalAbierto !== '') {
-            console.log("ENTRO 1 if")
             $('.contenedor-matriz-teclado').toggle();
             $('.' + modalAbierto).toggle();
         }
         //si el modal a abrir es distinto al abierto
         // saco el juego y muestro el nuevo
         if (modalAbierto !== nuevoModal) {
-            console.log("ENTRO 2do if")
             $('.contenedor-matriz-teclado').css('display', 'none');
             $('.' + nuevoModal).css('display', 'block');
             modalAbierto = nuevoModal;
@@ -661,4 +693,13 @@ let modoFechas = 'fechas';
             //  Si el nuevo modal es el mismo que el actualmente abierto, se cierra
             modalAbierto = '';
         }
+
     }
+
+    $('.nDificultad-config div').on('click', function () {
+        //el find busca el input descendiente del div, en el cual se hizo click
+        let valorInput = $(this).find('input').val(); 
+        $('.nDificultad-config input').removeClass('verde');
+        $(this).find('input').addClass('verde');
+        nLetrasModal = valorInput;
+      });
