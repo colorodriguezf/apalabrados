@@ -75,7 +75,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 30px;
+    height: 37px;
     color: #fff;
     margin:3px;
     font-size: 1.2em;
@@ -848,5 +848,12 @@ b {
   .footer__copy {
     font-size: .9rem;
     margin: 0;
+  }
+
+  .footer a {
+    color: rgb(67, 67, 67);
+  }
+  .footer a:hover {
+    text-decoration: none;
   }
   /* ----------------------------- */
