@@ -537,6 +537,7 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
         $('.contenedor-matriz-teclado').css('display','block');
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
+        $('.modal_info-wrapper').css('display', 'none');
         totalPalabrasAcertadas = 0;
         iniciarJuego(modoJuego, cantidadLetras);
     });

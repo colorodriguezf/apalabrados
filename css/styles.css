@@ -284,24 +284,37 @@ body {
 }
 .nDificultad-config {
     display: flex;
+    justify-content: center;
 }
+
 .text {
     text-align: center;
 }
-.nDificultad-config input {
+
+.nDificultad-config div {
+    display: flex;
+    align-items: center;
+}
+
+.nDificultad-config div input {
     width: 40.5px;
     max-width: 52.5px;
     height: 40.5px;
-    max-height: 62.5px;
     border: 2px solid rgb(224, 224, 224);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border-radius: 5px;
     cursor: pointer;
     margin: 4px;
     text-align: center;
 }
+
 .nDificultad-config input:focus {
     outline: none;
+}
+
+.modos_de_juego {
+    font-size: 18px;
+    font-weight: 500;
 }
 .top {
     display: flex;
@@ -788,6 +801,11 @@ b {
     }
     .close_comoJugar {
         right: 66vh;
+    }
+
+    .config-otros-juegos {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
     }
 }
 
