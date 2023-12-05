@@ -22,6 +22,9 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
 
     function iniciarJuego(modo, ndificultad) {
         $('.alert').css('display', 'none');
+        $('.modal_info-wrapper').css('display', 'none'); //ciero modal config si lo abro para cambiar modo de juego
+        modalAbierto = '';
+        $('.contenedor-matriz-teclado').css('display','block');
         modoJuego= modo;
         intentoActual = 1;
         posicionActual = 0;
@@ -75,7 +78,7 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
             $('#tecladoFechas').css('display', 'block');
 
             palabraSecreta = generarFecha();
-            // console.log(palabraSecreta);
+            console.log(palabraSecreta);
         }
 
         $('.center-container').css('display', 'none'); //saco menu
@@ -537,7 +540,6 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
         $('.contenedor-matriz-teclado').css('display','block');
         $('.modal_resultado').modal('hide');
         $('.btn-teclado').css('background', '#e5ecf4').removeClass('amarillo verde gris');
-        $('.modal_info-wrapper').css('display', 'none');
         totalPalabrasAcertadas = 0;
         iniciarJuego(modoJuego, cantidadLetras);
     });
@@ -617,6 +619,7 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
         }
         $('.modal_resultado .btn-primary').removeClass('siguiente').addClass('restart').html('Reiniciar');
         $('.modal_resultado').modal('show');
+        $('.modal_info-wrapper').css('display', 'none');
 
     });
     
@@ -658,20 +661,29 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
         let fotoFechas ='https://tusbuenasnoticias-s3.cdn.net.ar/s3i233/2023/08/tusbuenasnoticias/images/16/04/160450_975e74db3c238d0a44701d62bfc511ed543055444f211e4239a4addf16d8357e/xs.webp';
         if(modoJuego == modoPalabras) {
             $('.img1').attr('src', fotoEmojis);
-            $('.img2').attr('title', 'Emojis');
+            $('.img1').attr('title', 'Emojis');
+            $('.img1').attr('onclick', 'iniciarJuego("emojis", 4)');
+
             $('.img2').attr('src', fotoFechas);
             $('.img2').attr('title', 'Fechas');
+            $('.img2').attr('onclick', 'iniciarJuego("fechas", 10)');
         }
         else if (modoJuego === modoEmojis) {
             $('.img1').attr('src', fotoPalabras);
             $('.img1').attr('title', 'Palabras');
+            $('.img1').attr('onclick', 'iniciarJuego("palabras", 4)');
+
             $('.img2').attr('src', fotoFechas);
             $('.img2').attr('title', 'Fechas');
+            $('.img2').attr('onclick', 'iniciarJuego("fechas", 10)');
         } else if (modoJuego === modoFechas) {
             $('.img1').attr('src', fotoPalabras);
             $('.img1').attr('title', 'Palabras');
+            $('.img1').attr('onclick', 'iniciarJuego("palabras", 4)');
+
             $('.img2').attr('src', fotoEmojis);
             $('.img2').attr('title', 'Emojis');
+            $('.img1').attr('onclick', 'iniciarJuego("emojis", 4)');
         }
     });
     
