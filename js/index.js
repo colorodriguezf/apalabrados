@@ -656,9 +656,9 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
             iniciarJuego(modoJuego, nLetrasModal);            
         }    
         nLetrasModal = 0;
-        let fotoPalabras = 'https://www.semanarioextra.com.ar/wp-content/uploads/2020/12/5f520b7a46372.jpg';
-        let fotoEmojis = 'https://media.ambito.com/p/09e9bf683524d79af609f5431be9cdb6/adjuntos/239/imagenes/039/860/0039860472/375x211/smart/emojis-mas-usados-en-el-mundojpgwebp.png';
-        let fotoFechas ='https://tusbuenasnoticias-s3.cdn.net.ar/s3i233/2023/08/tusbuenasnoticias/images/16/04/160450_975e74db3c238d0a44701d62bfc511ed543055444f211e4239a4addf16d8357e/xs.webp';
+        let fotoPalabras = 'https://images.pexels.com/photos/278887/pexels-photo-278887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+        let fotoEmojis = '../img/fondo-emojis.png';
+        let fotoFechas ='https://images.pexels.com/photos/7059605/pexels-photo-7059605.jpeg?auto=compress&cs=tinysrgb&w=600';
         if(modoJuego == modoPalabras) {
             $('.img1').attr('src', fotoEmojis);
             $('.img1').attr('title', 'Emojis');
@@ -683,7 +683,7 @@ let modosDeJuego = [modoPalabras, modoEmojis, modoFechas];
 
             $('.img2').attr('src', fotoEmojis);
             $('.img2').attr('title', 'Emojis');
-            $('.img1').attr('onclick', 'iniciarJuego("emojis", 4)');
+            $('.img2').attr('onclick', 'iniciarJuego("emojis", 4)');
         }
     });
     

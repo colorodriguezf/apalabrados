@@ -13,7 +13,53 @@
 <body>
     
   <div class="center-container">
-    <div class="container container-menu">
+    <div class="slider-container">
+      <div class="left-slide">
+          <div class="contenedor-palabras">
+              <h1>Palabras</h1>
+              <p>Deberas adivinar la palabra oculta</p>
+          </div>
+          <div class="contenedor-emojis">
+              <h1>Emojis</h1>
+              <p>Adivina la palabra oculta en modo emojis</p>
+          </div>
+          <div class="contenedor-fechas">
+              <h1>Fechas</h1>
+              <p>Adivina la fecha correcta.</p>
+          </div>
+      </div>
+      <div class="right-slide">
+          <div class="contenedor-fechas-right">
+            <p>Esta en formato <strong>dd/mm/aaaa</strong></p>
+            <button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('fechas', 10)">Iniciar juego</button>
+          </div>
+          <div class="contenedor-emojis-right">
+              <ul>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 4)"> 4 Emojis</button></li>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 5)"> 5 Emojis</button></li>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 6)"> 6 Emojis</button></li>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('emojis', 7)"> 7 Emojis</button></li>
+              </ul>     
+          </div>
+          <div class="contenedor-palabras-right">
+              <ul>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 4)"> 4 Letras</button></li>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 5)"> 5 Letras</button></li>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 6)"> 6 Letras</button></li>
+                  <li><button class="btn btn-primary btn-dificultad" onclick="iniciarJuego('palabras', 7)"> 7 Letras</button></li>
+                </ul>    
+          </div>
+      </div>
+      <div class="action-buttons">
+          <button class="down-button">
+              <i class="fas fa-arrow-down"></i>
+          </button>
+          <button class="up-button">
+              <i class="fas fa-arrow-up"></i>
+          </button>
+      </div>
+  </div>
+    <!-- <div class="container container-menu">
       <div class="word-container">
         <div class="letter-box">A</div>
         <div class="letter-box">P</div>
@@ -54,7 +100,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
   </div>
 
 
@@ -501,8 +547,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/e9affabdf6.js" crossorigin="anonymous"></script>
 
-    <script  src="js/index.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/sliderMenu.js"></script>
     <script src="js/palabrasRandom.js"></script>
 
 
